@@ -1,0 +1,15 @@
+{
+  "name": "wiro",
+  "description": "Wiro AI plugins for Claude Code",
+  "owner": {
+    "name": "Wiro AI",
+    "email": "support@wiro.ai"
+  },
+  "plugins": [
+    {
+      "name": "wiro-ai",
+      "source": "./",
+      "description": "Run image, video, audio and LLM models on Wiro AI from Claude Code"
+    }
+  ]
+}

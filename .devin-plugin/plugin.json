@@ -1,0 +1,24 @@
+{
+  "name": "wiro-ai",
+  "displayName": "Wiro AI",
+  "version": "1.0.0",
+  "description": "Find the right image, video, audio or LLM model on Wiro AI, check its price and run it without leaving Devin",
+  "shortDescription": "Run AI image, video and audio models",
+  "setup": {
+    "notice": "Use the API key of a Wiro project. If the project uses signature-based auth, enter API_KEY:API_SECRET as the key.",
+    "steps": ["Create a project at wiro.ai/panel/project/new", "Copy the project's API key, and its API secret if it has one"]
+  },
+  "homepage": "https://wiro.ai",
+  "repository": "https://github.com/wiroai/Wiro-Plugin",
+  "license": "MIT",
+  "logo": "assets/logo.png",
+  "keywords": ["AI & Machine Learning"],
+  "mcpServers": {
+    "wiro": {
+      "url": "https://mcp.wiro.ai/v1",
+      "headers": {
+        "Authorization": "Bearer ${WIRO_API_KEY}"
+      }
+    }
+  }
+}

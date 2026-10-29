@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "wiro": {
+      "url": "https://mcp.wiro.ai/v1",
+      "headers": {
+        "Authorization": "Bearer ${WIRO_API_KEY}"
+      }
+    }
+  }
+}

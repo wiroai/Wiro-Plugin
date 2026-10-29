@@ -1,0 +1,21 @@
+{
+  "name": "wiro-ai",
+  "version": "1.0.0",
+  "description": "Run image, video, audio and LLM models on Wiro AI from Gemini CLI",
+  "settings": [
+    {
+      "name": "Wiro API key",
+      "description": "API key of your Wiro project. If the project uses signature-based auth, enter API_KEY:API_SECRET. Create a project at https://wiro.ai/panel/project/new",
+      "envVar": "WIRO_API_KEY",
+      "sensitive": true
+    }
+  ],
+  "mcpServers": {
+    "wiro": {
+      "httpUrl": "https://mcp.wiro.ai/v1",
+      "headers": {
+        "Authorization": "Bearer ${WIRO_API_KEY}"
+      }
+    }
+  }
+}
