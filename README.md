@@ -1,9 +1,6 @@
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://wiro.ai/images/logos/logo/logo-white.png">
-  <img src="https://wiro.ai/images/logos/logo/logo-black.png" alt="Wiro AI" width="180">
-</picture>
+<img src="https://wiro.ai/images/favicon/icon-512x512.png" alt="Wiro AI" width="100">
 
 # Wiro AI plugin
 
@@ -76,7 +73,7 @@ Any client that supports remote MCP servers can connect to `https://mcp.wiro.ai/
 
 - "Generate a photorealistic image of a mountain lake at sunset"
 - "What video generation models are available on Wiro?"
-- "Show me the parameters for openai/sora-2"
+- "Show me the parameters for google/veo3-1"
 - "Make a 5 second drone shot over mountains with Kling V3"
 - "Check the status of my last task"
 
