@@ -1,16 +1,23 @@
 <div align="center">
 
-<img src="assets/logo.png" alt="Wiro AI" width="88" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://wiro.ai/images/logos/logo/logo-white.png">
+  <img src="https://wiro.ai/images/logos/logo/logo-black.png" alt="Wiro AI" width="180">
+</picture>
 
 # Wiro AI plugin
 
-Run image, video, audio and LLM models on [Wiro AI](https://wiro.ai) from Cursor, Claude Code, Gemini CLI and Devin.
+Run image, video, audio and LLM models on Wiro AI from Cursor, Claude Code, Gemini CLI and Devin through the hosted Wiro MCP server.
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-111111?style=for-the-badge&color=111111)](./LICENSE) [![MCP: streamable HTTP](https://img.shields.io/badge/MCP-streamable%20HTTP-111111?style=for-the-badge&color=111111)](https://wiro.ai/docs/wiro-mcp-server) [![Works with Claude Code, Cursor, Gemini CLI and Devin](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Cursor%20%C2%B7%20Gemini%20CLI%20%C2%B7%20Devin-111111?style=for-the-badge&color=111111)](#install)
+
+[Website](https://wiro.ai) · [Models](https://wiro.ai/models) · [Docs](https://wiro.ai/docs/wiro-mcp-server) · [Dashboard](https://wiro.ai/panel)
 
 </div>
 
-This repository packages the hosted Wiro MCP server (`https://mcp.wiro.ai/v1`) as a plugin for each of these tools. Once it is installed, your assistant can search the Wiro model catalog, read a model's inputs and price, run it, wait for the task and show you the output. It can also upload input files, look through your past tasks and search the Wiro docs.
+This repository packages the hosted Wiro MCP server (`https://mcp.wiro.ai/v1`) as a plugin for each of these tools. Once it is installed, your assistant can search the Wiro AI model catalog, read a model's inputs and price, run it, wait for the task and show you the output. It can also upload input files, look through your past tasks and search the Wiro AI docs.
 
-The plugin is free. Each model run is billed to your Wiro account at the model's listed price.
+The plugin is free. Each model run is billed to your Wiro AI account at the model's listed price.
 
 ## Get an API key
 
@@ -82,11 +89,29 @@ Any client that supports remote MCP servers can connect to `https://mcp.wiro.ai/
 | `gemini-extension.json` | Gemini CLI |
 | `.devin-plugin/plugin.json` | Devin |
 
-All of them connect to the same hosted server. Its source code is in [wiroai/Wiro-MCP](https://github.com/wiroai/Wiro-MCP).
+All of them connect to the same hosted server, which runs the MCP tools from the open-source [wiroai/Wiro-MCP](https://github.com/wiroai/Wiro-MCP) package.
 
 ## Support, terms and privacy
 
 Email [support@wiro.ai](mailto:support@wiro.ai) or open an issue in this repository. Use of Wiro AI through the plugin is covered by the Wiro AI [Terms of Service](https://wiro.ai/agreement/terms-of-service) and [Privacy Policy](https://wiro.ai/agreement/privacy-policy).
+
+## More from Wiro AI
+
+| Repository | What it is |
+| --- | --- |
+| [Wiro-MCP](https://github.com/wiroai/Wiro-MCP) | Official MCP server for Wiro AI (`@wiro-ai/wiro-mcp`) |
+| [Swift-QuickStart](https://github.com/wiroai/Swift-QuickStart) | WiroKit, the Wiro AI SDK for iOS |
+| [Kotlin-QuickStart](https://github.com/wiroai/Kotlin-QuickStart) | WiroKit, the Wiro AI SDK for Android |
+| [Dart-QuickStart](https://github.com/wiroai/Dart-QuickStart) | Wiro AI SDK for Dart and Flutter |
+| [ReactNative-QuickStart](https://github.com/wiroai/ReactNative-QuickStart) | WiroKit, the Wiro AI SDK for React Native |
+| [Swift-Realtime](https://github.com/wiroai/Swift-Realtime) | Realtime voice AI example for iOS |
+| [Kotlin-Realtime](https://github.com/wiroai/Kotlin-Realtime) | Realtime voice AI example for Android |
+| [Dart-Realtime](https://github.com/wiroai/Dart-Realtime) | Realtime voice AI example for Flutter |
+| [ReactNative-Realtime](https://github.com/wiroai/ReactNative-Realtime) | Realtime voice AI example for React Native |
+| [n8n-nodes-wiroai](https://github.com/wiroai/n8n-nodes-wiroai) | Wiro AI nodes for n8n |
+| [Wiro-Docs](https://github.com/wiroai/Wiro-Docs) | Source of the Wiro AI API docs |
+
+[Website](https://wiro.ai) · [Models](https://wiro.ai/models) · [Docs](https://wiro.ai/docs) · [X](https://x.com/wiroai)
 
 ## License
 
