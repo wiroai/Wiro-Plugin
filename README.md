@@ -84,6 +84,10 @@ Any client that supports remote MCP servers can connect to `https://mcp.wiro.ai/
 
 All of them connect to the same hosted server. Its source code is in [wiroai/Wiro-MCP](https://github.com/wiroai/Wiro-MCP).
 
+## Support, terms and privacy
+
+Email [support@wiro.ai](mailto:support@wiro.ai) or open an issue in this repository. Use of Wiro AI through the plugin is covered by the Wiro AI [Terms of Service](https://wiro.ai/agreement/terms-of-service) and [Privacy Policy](https://wiro.ai/agreement/privacy-policy).
+
 ## License
 
 MIT, see [LICENSE](./LICENSE).
