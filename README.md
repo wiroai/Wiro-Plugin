@@ -24,7 +24,7 @@ The plugin is free. Model runs and paid agent plans are billed to your Wiro wall
 
 ## Sign in
 
-There is no key to copy. The first time your assistant connects, it opens the Wiro sign-in page in your browser. Sign in or create an account, pick a project, choose how long the connection lasts and click Allow. The project you pick decides which wallet pays and which workflows and agents your assistant works with. You can see or disconnect your apps at any time under [Connected apps](https://wiro.ai/panel/project?view=apps).
+There is no key to copy. The first time your assistant connects, it opens the Wiro sign-in page in your browser. Sign in or create an account, pick a project, choose how long the connection lasts and click Allow. The project you pick decides which wallet pays and which workflows and agents your assistant works with. You can see or disconnect your apps at any time under [Connected Apps](https://wiro.ai/panel/project?view=apps).
 
 If you'd rather use an API key, add the server by hand with an `Authorization` header, as shown under [Other assistants](#other-assistants).
 
