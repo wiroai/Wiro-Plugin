@@ -1,7 +1,7 @@
 {
   "name": "wiro-ai",
   "displayName": "Wiro AI",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Run image, video, audio and LLM models on Wiro AI from Cursor. Search the catalog, check a model's inputs and price, run it and get the result in chat.",
   "author": {
     "name": "Wiro AI",
@@ -11,16 +11,5 @@
   "repository": "https://github.com/wiroai/Wiro-Plugin",
   "license": "MIT",
   "keywords": ["wiro", "ai-models", "image-generation", "video-generation", "text-to-speech", "llm", "mcp"],
-  "logo": "assets/logo.png",
-  "variables": {
-    "type": "object",
-    "properties": {
-      "WIRO_API_KEY": {
-        "type": "string",
-        "title": "Wiro API key",
-        "description": "API key of your Wiro project. If the project uses signature-based auth, enter API_KEY:API_SECRET. Create a project at https://wiro.ai/panel/project/new"
-      }
-    },
-    "required": ["WIRO_API_KEY"]
-  }
+  "logo": "assets/logo.png"
 }

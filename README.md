@@ -16,10 +16,11 @@ This repository packages the hosted Wiro MCP server (`https://mcp.wiro.ai/v1`) a
 
 The plugin is free. Each model run is billed to your Wiro AI account at the model's listed price.
 
-## Get an API key
+## Sign in
 
-1. Sign up at [wiro.ai](https://wiro.ai) and create a project at [wiro.ai/panel/project/new](https://wiro.ai/panel/project/new).
-2. Copy the project's API key. If the project uses signature-based auth, enter `API_KEY:API_SECRET` (both values joined with a colon) wherever the plugin asks for the key.
+There is no key to copy. The first time your assistant connects, it opens the Wiro sign-in page in your browser. Sign in or create an account, pick the project whose wallet pays for runs, choose how long the connection lasts and click Allow. You can see or disconnect your apps at any time under [Connected apps](https://wiro.ai/panel/project?view=apps).
+
+If you'd rather use an API key, add the server by hand with an `Authorization` header, as shown under [Other assistants](#other-assistants).
 
 ## Install
 
@@ -30,7 +31,7 @@ The plugin is free. Each model run is billed to your Wiro AI account at the mode
 /plugin install wiro-ai@wiro
 ```
 
-Claude Code asks for your API key when the plugin is enabled and keeps it in your system's secure credential store.
+Then open `/mcp`, select the Wiro server and choose Authenticate to sign in.
 
 ### Gemini CLI
 
@@ -38,7 +39,7 @@ Claude Code asks for your API key when the plugin is enabled and keeps it in you
 gemini extensions install https://github.com/wiroai/Wiro-Plugin
 ```
 
-Gemini CLI asks for your API key during install. To change it later, run `gemini extensions config wiro-ai`.
+Then run `/mcp auth wiro` in Gemini CLI to sign in.
 
 ### Devin
 
@@ -46,28 +47,29 @@ Gemini CLI asks for your API key during install. To change it later, run `gemini
 devin plugins install wiroai/Wiro-Plugin
 ```
 
-In the Devin web app, go to Customize > Plugins > Add plugin > From repository and enter `wiroai/Wiro-Plugin`. Then connect the Wiro server with your API key.
+In the Devin web app, go to Customize > Plugins > Add plugin > From repository and enter `wiroai/Wiro-Plugin`. Devin opens the Wiro sign-in page the first time it connects.
 
 ### Cursor
 
-This repository is also a Cursor plugin. Until it is listed in the Cursor Marketplace, add the hosted server to your MCP settings by hand:
+This repository is also a Cursor plugin. Until it is listed in the Cursor Marketplace, use the one-click link or add the hosted server to your MCP settings by hand:
+
+[Add to Cursor](https://cursor.com/install-mcp?name=wiro&config=eyJ1cmwiOiJodHRwczovL21jcC53aXJvLmFpL3YxIn0=)
 
 ```json
 {
   "mcpServers": {
     "wiro": {
-      "url": "https://mcp.wiro.ai/v1",
-      "headers": {
-        "Authorization": "Bearer YOUR_WIRO_API_KEY"
-      }
+      "url": "https://mcp.wiro.ai/v1"
     }
   }
 }
 ```
 
+Cursor opens the Wiro sign-in page the first time it connects.
+
 ### Other assistants
 
-Any client that supports remote MCP servers can connect to `https://mcp.wiro.ai/v1` with an `Authorization: Bearer <API key>` header. To run the server on your own machine instead, use the npm package [`@wiro-ai/wiro-mcp`](https://www.npmjs.com/package/@wiro-ai/wiro-mcp). Setup guides for more clients are in the [Wiro MCP docs](https://wiro.ai/docs/wiro-mcp-server).
+Any client that supports remote MCP servers can connect to `https://mcp.wiro.ai/v1`. Clients with MCP sign-in (OAuth) open the Wiro sign-in page. Others can send an `Authorization: Bearer <API key>` header instead; for a project that uses signature-based auth, send `API_KEY:API_SECRET` (both values joined with a colon). Create a project and its API key at [wiro.ai/panel/project/new](https://wiro.ai/panel/project/new). To run the server on your own machine instead, use the npm package [`@wiro-ai/wiro-mcp`](https://www.npmjs.com/package/@wiro-ai/wiro-mcp). Setup guides for more clients are in the [Wiro MCP docs](https://wiro.ai/docs/wiro-mcp-server).
 
 ## Try it
 
