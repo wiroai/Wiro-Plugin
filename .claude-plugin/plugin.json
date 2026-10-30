@@ -1,8 +1,8 @@
 {
   "name": "wiro-ai",
   "displayName": "Wiro AI",
-  "version": "1.1.0",
-  "description": "Run image, video, audio and LLM models on Wiro AI from Claude Code",
+  "version": "1.2.0",
+  "description": "Run image, video, audio and LLM models, build workflows and manage AI agents on Wiro AI from Claude Code",
   "author": {
     "name": "Wiro AI",
     "email": "support@wiro.ai",
@@ -11,7 +11,7 @@
   "homepage": "https://wiro.ai/docs/wiro-mcp-server",
   "repository": "https://github.com/wiroai/Wiro-Plugin",
   "license": "MIT",
-  "keywords": ["wiro", "ai-models", "image-generation", "video-generation", "text-to-speech", "llm", "mcp"],
+  "keywords": ["wiro", "ai-models", "image-generation", "video-generation", "text-to-speech", "llm", "workflows", "ai-agents", "mcp"],
   "mcpServers": {
     "wiro": {
       "type": "http",

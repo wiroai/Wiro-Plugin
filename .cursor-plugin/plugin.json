@@ -1,8 +1,8 @@
 {
   "name": "wiro-ai",
   "displayName": "Wiro AI",
-  "version": "1.1.0",
-  "description": "Run image, video, audio and LLM models on Wiro AI from Cursor. Search the catalog, check a model's inputs and price, run it and get the result in chat.",
+  "version": "1.2.0",
+  "description": "Run image, video, audio and LLM models, build workflows and manage AI agents on Wiro AI from Cursor. Check a model's inputs and price, run models and workflows, and talk to Studio or your own agents in chat.",
   "author": {
     "name": "Wiro AI",
     "email": "support@wiro.ai"
@@ -10,6 +10,6 @@
   "homepage": "https://wiro.ai/docs/wiro-mcp-server",
   "repository": "https://github.com/wiroai/Wiro-Plugin",
   "license": "MIT",
-  "keywords": ["wiro", "ai-models", "image-generation", "video-generation", "text-to-speech", "llm", "mcp"],
+  "keywords": ["wiro", "ai-models", "image-generation", "video-generation", "text-to-speech", "llm", "workflows", "ai-agents", "mcp"],
   "logo": "assets/logo.png"
 }

@@ -4,7 +4,7 @@
 
 # Wiro AI plugin
 
-Run image, video, audio and LLM models on Wiro AI from Cursor, Claude Code, Gemini CLI and Devin through the hosted Wiro MCP server.
+Run image, video, audio and LLM models, build and run workflows, and deploy and talk to AI agents on Wiro AI from Cursor, Claude Code, Gemini CLI and Devin through the hosted Wiro MCP server.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-111111?style=for-the-badge&color=111111)](./LICENSE) [![MCP: streamable HTTP](https://img.shields.io/badge/MCP-streamable%20HTTP-111111?style=for-the-badge&color=111111)](https://wiro.ai/docs/wiro-mcp-server) [![Works with Claude Code, Cursor, Gemini CLI and Devin](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Cursor%20%C2%B7%20Gemini%20CLI%20%C2%B7%20Devin-111111?style=for-the-badge&color=111111)](#install)
 
@@ -12,13 +12,19 @@ Run image, video, audio and LLM models on Wiro AI from Cursor, Claude Code, Gemi
 
 </div>
 
-This repository packages the hosted Wiro MCP server (`https://mcp.wiro.ai/v1`) as a plugin for each of these tools. Once it is installed, your assistant can search the Wiro AI model catalog, read a model's inputs and price, run it, wait for the task and show you the output. It can also upload input files, look through your past tasks and search the Wiro AI docs.
+This repository packages the hosted Wiro MCP server (`https://mcp.wiro.ai/v1`) as a plugin for each of these tools. Once it is installed, your assistant can use three sets of Wiro AI tools:
 
-The plugin is free. Each model run is billed to your Wiro AI account at the model's listed price.
+- **Models**: search the Wiro AI model catalog, read a model's inputs and price, run it, wait for the task and show you the output. It can also upload input files and look through your past tasks.
+- **Workflows**: build workflows that chain models into one graph, run them, resume failed runs and browse the public gallery. The Workflow Agent can design or change a workflow with you in plain language.
+- **Agents**: talk to Studio, Wiro's creative agent, and deploy, configure, run and message your own agents built from templates or from skills.
+
+Your assistant can also search the Wiro AI docs, and built-in guides tell it the order of calls, what costs money and what needs your approval.
+
+The plugin is free. Model runs and paid agent plans are billed to your Wiro wallet: a model run at the model's listed price, an agent plan when it starts and then every 30 days until you cancel it. Workflow runs are billed for their model steps, and chats with Studio or the Workflow Agent after each reply. Deploying an agent, changing its plan or skills, or buying extra credits shows the price and asks before charging.
 
 ## Sign in
 
-There is no key to copy. The first time your assistant connects, it opens the Wiro sign-in page in your browser. Sign in or create an account, pick the project whose wallet pays for runs, choose how long the connection lasts and click Allow. You can see or disconnect your apps at any time under [Connected apps](https://wiro.ai/panel/project?view=apps).
+There is no key to copy. The first time your assistant connects, it opens the Wiro sign-in page in your browser. Sign in or create an account, pick a project, choose how long the connection lasts and click Allow. The project you pick decides which wallet pays and which workflows and agents your assistant works with. You can see or disconnect your apps at any time under [Connected apps](https://wiro.ai/panel/project?view=apps).
 
 If you'd rather use an API key, add the server by hand with an `Authorization` header, as shown under [Other assistants](#other-assistants).
 
@@ -73,11 +79,26 @@ Any client that supports remote MCP servers can connect to `https://mcp.wiro.ai/
 
 ## Try it
 
+**Models**
+
 - "Generate a photorealistic image of a mountain lake at sunset"
 - "What video generation models are available on Wiro?"
 - "Show me the parameters for google/veo3-1"
 - "Make a 5 second drone shot over mountains with Kling V3"
 - "Check the status of my last task"
+
+**Workflows**
+
+- "Build a workflow that turns a product photo into a short ad video, then run it on this photo"
+- "Ask the Workflow Agent to add an upscale step to my product ad workflow and save it"
+- "Why did my last workflow run fail? Resume it if it can be resumed"
+
+**Agents**
+
+- "Ask Studio for three logo ideas for a coffee shop"
+- "Which agent templates can manage Instagram? What does each plan cost?"
+- "Deploy the Instagram Manager agent on the Starter plan and tell me what it still needs"
+- "Tell my support agent to summarize today's tickets"
 
 ## What's in this repository
 

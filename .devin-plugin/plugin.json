@@ -1,11 +1,11 @@
 {
   "name": "wiro-ai",
   "displayName": "Wiro AI",
-  "version": "1.1.0",
-  "description": "Find the right image, video, audio or LLM model on Wiro AI, check its price and run it without leaving Devin",
-  "shortDescription": "Run AI image, video and audio models",
+  "version": "1.2.0",
+  "description": "Run image, video, audio and LLM models, build workflows and manage AI agents on Wiro AI without leaving Devin",
+  "shortDescription": "Run AI models, workflows and agents",
   "setup": {
-    "notice": "Devin opens the Wiro sign-in page the first time it connects. Sign in, pick the project whose wallet pays for runs and click Allow.",
+    "notice": "Devin opens the Wiro sign-in page the first time it connects. Sign in, pick the project whose wallet pays for runs and agent plans, and click Allow.",
     "steps": ["Sign up at wiro.ai if you don't have an account yet", "When Devin opens the Wiro sign-in page, sign in, pick a project and click Allow"]
   },
   "homepage": "https://wiro.ai",
