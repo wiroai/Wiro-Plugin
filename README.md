@@ -20,7 +20,7 @@ This repository packages the hosted Wiro MCP server (`https://mcp.wiro.ai/v1`) a
 
 Your assistant can also search the Wiro AI docs, and built-in guides tell it the order of calls, what costs money and what needs your approval.
 
-The plugin is free. Model runs and paid agent plans are billed to your Wiro wallet: a model run at the model's listed price, an agent plan when it starts and then every 30 days until you cancel it. Workflow runs are billed for their model steps, and chats with Studio or the Workflow Agent after each reply. Deploying an agent, changing its plan or skills, or buying extra credits shows the price and asks before charging.
+The plugin is free. Model runs are billed to your Wiro wallet at the model's listed price, workflow runs for their model steps, and chats with Studio or the Workflow Agent after each reply. An agent plan your assistant starts is paid from the same wallet when it starts and then every 30 days until you cancel it. A plan you pay by card in the Wiro dashboard keeps renewing on that card, and you upgrade or top it up there. Deploying an agent, changing its plan or skills, or buying extra credits shows the price and asks before charging.
 
 ## Sign in
 
