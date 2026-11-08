@@ -77,13 +77,20 @@ Cursor opens the Wiro sign-in page the first time it connects.
 
 Any client that supports remote MCP servers can connect to `https://mcp.wiro.ai/v1`. Clients with MCP sign-in (OAuth) open the Wiro sign-in page. Others can send an `Authorization: Bearer <API key>` header instead; for a project that uses signature-based auth, send `API_KEY:API_SECRET` (both values joined with a colon). Create a project and its API key at [wiro.ai/panel/project/new](https://wiro.ai/panel/project/new). To run the server on your own machine instead, use the npm package [`@wiro-ai/wiro-mcp`](https://www.npmjs.com/package/@wiro-ai/wiro-mcp). Setup guides for more clients are in the [Wiro MCP docs](https://wiro.ai/docs/wiro-mcp-server).
 
-### Agent skill
+### Agent skills
 
-The repository also has an agent skill, `wiro-ai`, in [`skills/wiro-ai/SKILL.md`](./skills/wiro-ai/SKILL.md). It shows a coding agent how to use Wiro AI from code: find a model, check its price, run it, get the result, and call LLMs through the OpenAI-compatible endpoint. Claude Code picks it up with the plugin. To add it to Codex, Cursor and other agents that read skills, run:
+The repository also has two agent skills:
+
+- `wiro-ai` in [`skills/wiro-ai/SKILL.md`](./skills/wiro-ai/SKILL.md) shows a coding agent how to use Wiro AI from code: find a model, check its price, run it, get the result, and call LLMs through the OpenAI-compatible endpoint.
+- `wiro-realtime-voice` in [`skills/wiro-realtime-voice/SKILL.md`](./skills/wiro-realtime-voice/SKILL.md) covers live voice conversation, streaming text-to-speech and streaming speech-to-text over the Wiro WebSocket.
+
+Claude Code picks them up with the plugin. To add them to Codex, Cursor and other agents that read skills, run:
 
 ```bash
-npx skills add wiroai/Wiro-Plugin --skill wiro-ai
+npx skills add wiroai/Wiro-Plugin --skill wiro-ai --skill wiro-realtime-voice
 ```
+
+The Wiro SDKs ship their own skills: `wiro-flutter` (wiroai/Dart-QuickStart), `wiro-react-native` (wiroai/ReactNative-QuickStart), `wiro-swift` (wiroai/Swift-QuickStart), `wiro-kotlin` (wiroai/Kotlin-QuickStart) and `wiro-n8n` (wiroai/n8n-nodes-wiroai).
 
 ## Try it
 
@@ -116,7 +123,7 @@ npx skills add wiroai/Wiro-Plugin --skill wiro-ai
 | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` | Claude Code |
 | `gemini-extension.json` | Gemini CLI |
 | `.devin-plugin/plugin.json` | Devin |
-| `skills/wiro-ai/SKILL.md` | Claude Code with the plugin, and other agents through `npx skills add` |
+| `skills/wiro-ai/SKILL.md`, `skills/wiro-realtime-voice/SKILL.md` | Claude Code with the plugin, and other agents through `npx skills add` |
 
 All of them connect to the same hosted server, which runs the MCP tools from the open-source [wiroai/Wiro-MCP](https://github.com/wiroai/Wiro-MCP) package.
 
