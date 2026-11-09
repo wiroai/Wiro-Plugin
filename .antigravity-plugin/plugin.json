@@ -1,0 +1,22 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "wiro-ai",
+  "displayName": "Wiro AI",
+  "version": "1.2.0",
+  "description": "Run 1,000+ image, video, audio and LLM models, build workflows that chain them, and deploy and message AI agents on Wiro AI.",
+  "logo": "assets/logo.png",
+  "suggestedPrompts": [
+    "Generate a photorealistic image of a mountain lake at sunset",
+    "What video generation models are available on Wiro?",
+    "Build a workflow that turns a product photo into a short ad video"
+  ],
+  "author": {
+    "name": "Wiro AI",
+    "email": "support@wiro.ai",
+    "url": "https://wiro.ai"
+  },
+  "homepage": "https://wiro.ai/docs/wiro-mcp-server",
+  "repository": "https://github.com/wiroai/Wiro-Plugin",
+  "license": "MIT",
+  "keywords": ["wiro", "ai-models", "image-generation", "video-generation", "text-to-speech", "llm", "workflows", "ai-agents", "mcp"]
+}

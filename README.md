@@ -4,9 +4,9 @@
 
 # Wiro AI plugin
 
-Run image, video, audio and LLM models, build and run workflows, and deploy and talk to AI agents on Wiro AI from Cursor, Claude Code, Gemini CLI and Devin through the hosted Wiro MCP server.
+Run image, video, audio and LLM models, build and run workflows, and deploy and talk to AI agents on Wiro AI from Cursor, Claude Code, Gemini CLI, Devin, Antigravity and Kiro through the hosted Wiro MCP server.
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-111111?style=for-the-badge&color=111111)](./LICENSE) [![MCP: streamable HTTP](https://img.shields.io/badge/MCP-streamable%20HTTP-111111?style=for-the-badge&color=111111)](https://wiro.ai/docs/wiro-mcp-server) [![Works with Claude Code, Cursor, Gemini CLI and Devin](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Cursor%20%C2%B7%20Gemini%20CLI%20%C2%B7%20Devin-111111?style=for-the-badge&color=111111)](#install)
+[![License: MIT](https://img.shields.io/badge/license-MIT-111111?style=for-the-badge&color=111111)](./LICENSE) [![MCP: streamable HTTP](https://img.shields.io/badge/MCP-streamable%20HTTP-111111?style=for-the-badge&color=111111)](https://wiro.ai/docs/wiro-mcp-server) [![Works with Claude Code, Cursor, Gemini CLI, Devin, Antigravity and Kiro](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Cursor%20%C2%B7%20Gemini%20CLI%20%C2%B7%20Devin%20%C2%B7%20Antigravity%20%C2%B7%20Kiro-111111?style=for-the-badge&color=111111)](#install)
 
 [Website](https://wiro.ai) · [Models](https://wiro.ai/models) · [Docs](https://wiro.ai/docs/wiro-mcp-server) · [Dashboard](https://wiro.ai/panel)
 
@@ -55,6 +55,18 @@ devin plugins install wiroai/Wiro-Plugin
 
 In the Devin web app, go to Customize > Plugins > Add plugin > From repository and enter `wiroai/Wiro-Plugin`. Devin opens the Wiro sign-in page the first time it connects.
 
+### Antigravity
+
+```bash
+agy plugin install https://github.com/wiroai/Wiro-Plugin
+```
+
+The plugin adds the Wiro MCP server and both agent skills. Antigravity opens the Wiro sign-in page the first time the server connects.
+
+### Kiro
+
+In Kiro, open the Powers panel, choose Add Custom Power > Import power from GitHub and enter `https://github.com/wiroai/Wiro-Plugin/tree/main/kiro`. The power adds the Wiro MCP server, and Kiro opens the Wiro sign-in page the first time it connects.
+
 ### Cursor
 
 This repository is also a Cursor plugin. Until it is listed in the Cursor Marketplace, use the one-click link or add the hosted server to your MCP settings by hand:
@@ -84,7 +96,7 @@ The repository also has two agent skills:
 - `wiro-ai` in [`skills/wiro-ai/SKILL.md`](./skills/wiro-ai/SKILL.md) shows a coding agent how to use Wiro AI from code: find a model, check its price, run it, get the result, and call LLMs through the OpenAI-compatible endpoint.
 - `wiro-realtime-voice` in [`skills/wiro-realtime-voice/SKILL.md`](./skills/wiro-realtime-voice/SKILL.md) covers live voice conversation, streaming text-to-speech and streaming speech-to-text over the Wiro WebSocket.
 
-Claude Code picks them up with the plugin. To add them to Codex, Cursor and other agents that read skills, run:
+Claude Code and Antigravity pick them up with the plugin. To add them to Codex, Cursor and other agents that read skills, run:
 
 ```bash
 npx skills add wiroai/Wiro-Plugin --skill wiro-ai --skill wiro-realtime-voice
@@ -123,7 +135,9 @@ The Wiro SDKs ship their own skills: `wiro-flutter` (wiroai/Dart-QuickStart), `w
 | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` | Claude Code |
 | `gemini-extension.json` | Gemini CLI |
 | `.devin-plugin/plugin.json` | Devin |
-| `skills/wiro-ai/SKILL.md`, `skills/wiro-realtime-voice/SKILL.md` | Claude Code with the plugin, and other agents through `npx skills add` |
+| `.antigravity-plugin/plugin.json`, `.antigravity-plugin/README.md`, `mcp_config.json` | Antigravity |
+| `kiro/plugin.json`, `kiro/mcp.json` | Kiro |
+| `skills/wiro-ai/SKILL.md`, `skills/wiro-realtime-voice/SKILL.md` | Claude Code and Antigravity with the plugin, and other agents through `npx skills add` |
 
 All of them connect to the same hosted server, which runs the MCP tools from the open-source [wiroai/Wiro-MCP](https://github.com/wiroai/Wiro-MCP) package.
 

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "wiro-ai",
+  "version": "1.2.0",
+  "description": "Run image, video, audio and LLM models, build workflows that chain them, and deploy and message AI agents on Wiro AI",
+  "author": {
+    "name": "Wiro AI",
+    "email": "support@wiro.ai",
+    "url": "https://wiro.ai"
+  },
+  "keywords": ["wiro", "image-generation", "video-generation", "text-to-speech", "voiceover", "generative-ai", "ai-models", "llm", "workflows", "ai-agents"],
+  "license": "MIT",
+  "homepage": "https://wiro.ai/docs/wiro-mcp-server",
+  "repository": "https://github.com/wiroai/Wiro-Plugin"
+}
