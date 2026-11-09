@@ -102,7 +102,7 @@ Claude Code and Antigravity pick them up with the plugin. To add them to Codex, 
 npx skills add wiroai/Wiro-Plugin --skill wiro-ai --skill wiro-realtime-voice
 ```
 
-The Wiro SDKs ship their own skills: `wiro-flutter` (wiroai/Dart-QuickStart), `wiro-react-native` (wiroai/ReactNative-QuickStart), `wiro-swift` (wiroai/Swift-QuickStart), `wiro-kotlin` (wiroai/Kotlin-QuickStart) and `wiro-n8n` (wiroai/n8n-nodes-wiroai).
+The Wiro SDKs and packages ship their own skills: `wiro-flutter` (wiroai/Dart-QuickStart), `wiro-react-native` (wiroai/ReactNative-QuickStart), `wiro-swift` (wiroai/Swift-QuickStart), `wiro-kotlin` (wiroai/Kotlin-QuickStart), `wiro-n8n` (wiroai/n8n-nodes-wiroai) and `wiro-llm` (wiroai/Wiro-LLM), which covers the LLM gateway.
 
 ## Try it
 
@@ -150,6 +150,7 @@ Email [support@wiro.ai](mailto:support@wiro.ai) or open an issue in this reposit
 | Repository | What it is |
 | --- | --- |
 | [Wiro-MCP](https://github.com/wiroai/Wiro-MCP) | Official MCP server for Wiro AI, [`@wiro-ai/wiro-mcp` on npm](https://www.npmjs.com/package/@wiro-ai/wiro-mcp) |
+| [Wiro-LLM](https://github.com/wiroai/Wiro-LLM) | Wiro AI provider for the Vercel AI SDK and LLM gateway examples, [`@wiro-ai/wiro-llm` on npm](https://www.npmjs.com/package/@wiro-ai/wiro-llm) |
 | [Swift-QuickStart](https://github.com/wiroai/Swift-QuickStart) | WiroKit, the Wiro AI SDK for iOS |
 | [Kotlin-QuickStart](https://github.com/wiroai/Kotlin-QuickStart) | WiroKit, the Wiro AI SDK for Android |
 | [Dart-QuickStart](https://github.com/wiroai/Dart-QuickStart) | Wiro AI SDK for Dart and Flutter, [`wiro` on pub.dev](https://pub.dev/packages/wiro) |
