@@ -2,6 +2,12 @@
 
 This folder is the Wiro AI power for Kiro. It connects Kiro to the hosted Wiro MCP server (`https://mcp.wiro.ai/v1`), so you can run image, video, audio and LLM models, build workflows that chain them, and deploy and talk to AI agents on Wiro AI from chat.
 
+## What you get
+
+- The Wiro MCP server, with tools to search the catalog of 1,000+ models, read prices, run models, build and run workflows, and talk to Studio and your own agents.
+- Slash commands as skills: `/wiro-image`, `/wiro-edit-image`, `/wiro-video`, `/wiro-speech`, `/wiro-music`, `/wiro-transcribe`, `/wiro-3d`, `/wiro-models`, `/wiro-workflow`, `/wiro-agent` and `/wiro-task`. Type one, then what you want. Each one picks a fitting model from the catalog, tells you the price before it runs and can save the results into your project.
+- The agent skills `wiro-ai`, `wiro-realtime-voice`, `wiro-workflows`, `wiro-agents` and `wiro-media-assets`.
+
 ## Install
 
 In Kiro, open the Powers panel, choose Add Custom Power > Import power from GitHub and enter:
