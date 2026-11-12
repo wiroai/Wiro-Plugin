@@ -149,7 +149,7 @@ console.log(completion.choices[0].message.content);
 
 ## Workflows
 
-A workflow is a saved chain of model steps and built-in utility steps, with its own inputs and outputs. Start one with `POST /Workflow/Run` (`slug` is its full slug, `input` the input values); it returns a `workflowtoken`. Poll `POST /Workflow/RunDetail` with that token until `status` is `completed`, `failed`, `stopped` or `cancelled`. Each model step is billed like a normal run when it succeeds, and utility steps are not billed. The wallet must hold $0.50 per model step to start, and the expected cost is the sum of the step models' prices. A failed run can be resumed without paying again for finished steps. MCP: `list_workflows`, `run_workflow`, `wait_for_workflow_run`, `resume_workflow_run`. See https://wiro.ai/docs/workflows.
+A workflow is a saved chain of model steps and built-in utility steps, with its own inputs and outputs. Start one with `POST /Workflow/Run` (`slug` is its full slug, `input` the input values); it returns a `workflowtoken`. Poll `POST /Workflow/RunDetail` with that token until `status` is `completed`, `failed`, `stopped` or `cancelled`. Each model step is billed like a normal run when it succeeds, and utility steps are not billed. The wallet must hold 0.50 USD per model step to start, and the expected cost is the sum of the step models' prices. A failed run can be resumed without paying again for finished steps. MCP: `list_workflows`, `run_workflow`, `wait_for_workflow_run`, `resume_workflow_run`. See https://wiro.ai/docs/workflows.
 
 ## Hosted agents
 
@@ -164,7 +164,7 @@ Check `result` first, then `errors[].code`. Do not rely on the HTTP status alone
 | `0` | Validation, missing parameter or server error | Fix the request; retry a server error with backoff |
 | `1` | Model or task not found or not accessible | Check the slug, task id or token |
 | `96` | Concurrency limit reached | No task was created and nothing was charged; retry after 2, 4, 8 s (up to 60 s, at most 8 tries) or queue |
-| `97` | Insufficient balance | The user adds funds; a run needs at least $0.50 ($10 for training models) |
+| `97` | Insufficient balance | The user adds funds; a run needs at least 0.50 USD (10 USD for training models) |
 | `98` | The model needs a signed-in account | Use authenticated credentials |
 | `99` | Bearer token missing, invalid or expired | Check the credentials |
 
