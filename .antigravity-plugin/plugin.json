@@ -2,7 +2,7 @@
   "$schema": "https://antigravity.google/schemas/v1/plugin.json",
   "name": "wiro-ai",
   "displayName": "Wiro AI",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Run 1,000+ image, video, audio and LLM models, build workflows that chain them, and deploy and message AI agents on Wiro AI.",
   "logo": "assets/logo.png",
   "suggestedPrompts": [
