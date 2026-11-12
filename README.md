@@ -20,6 +20,8 @@ This repository packages the hosted Wiro MCP server (`https://mcp.wiro.ai/v1`) a
 
 Your assistant can also search the Wiro AI docs, and built-in guides tell it the order of calls, what costs money and what needs your approval.
 
+The plugin also comes with ready [slash commands](#slash-commands) for images, image edits, video, speech, music, transcripts, 3D, the model catalog, workflows, agents and tasks. Each one picks a fitting model from the catalog, tells you the price before it runs and can save the results into your project.
+
 The plugin is free. Model runs are billed to your Wiro wallet at the model's listed price, workflow runs for their model steps, and chats with Studio or the Workflow Agent after each reply. An agent plan your assistant starts is paid from the same wallet when it starts and then every 30 days until you cancel it. A plan you pay by card in the Wiro dashboard keeps renewing on that card, and you upgrade or top it up there. Deploying an agent, changing its plan or skills, or buying extra credits shows the price and asks before charging.
 
 ## Sign in
@@ -61,11 +63,11 @@ In the Devin web app, go to Customize > Plugins > Add plugin > From repository a
 agy plugin install https://github.com/wiroai/Wiro-Plugin
 ```
 
-The plugin adds the Wiro MCP server and both agent skills. Antigravity opens the Wiro sign-in page the first time the server connects.
+The plugin adds the Wiro MCP server, the agent skills and the slash commands. Antigravity opens the Wiro sign-in page the first time the server connects.
 
 ### Kiro
 
-In Kiro, open the Powers panel, choose Add Custom Power > Import power from GitHub and enter `https://github.com/wiroai/Wiro-Plugin/tree/main/kiro`. The power adds the Wiro MCP server, and Kiro opens the Wiro sign-in page the first time it connects.
+In Kiro, open the Powers panel, choose Add Custom Power > Import power from GitHub and enter `https://github.com/wiroai/Wiro-Plugin/tree/main/kiro`. The power adds the Wiro MCP server, the agent skills and the slash commands, and Kiro opens the Wiro sign-in page the first time it connects.
 
 ### Cursor
 
@@ -91,20 +93,72 @@ Any client that supports remote MCP servers can connect to `https://mcp.wiro.ai/
 
 ### Agent skills
 
-The repository also has two agent skills:
+The repository also has five agent skills:
 
 - `wiro-ai` in [`skills/wiro-ai/SKILL.md`](./skills/wiro-ai/SKILL.md) shows a coding agent how to use Wiro AI from code: find a model, check its price, run it, get the result, and call LLMs through the OpenAI-compatible endpoint.
 - `wiro-realtime-voice` in [`skills/wiro-realtime-voice/SKILL.md`](./skills/wiro-realtime-voice/SKILL.md) covers live voice conversation, streaming text-to-speech and streaming speech-to-text over the Wiro WebSocket.
+- `wiro-workflows` in [`skills/wiro-workflows/SKILL.md`](./skills/wiro-workflows/SKILL.md) designs, saves, runs, tests and repairs workflows, writes their graphs and drafts or edits them with the Workflow Agent.
+- `wiro-agents` in [`skills/wiro-agents/SKILL.md`](./skills/wiro-agents/SKILL.md) covers agents from template to daily use: plans and prices, deploying, credentials and sign-ins, messages, scheduled tasks, plan changes and removal.
+- `wiro-media-assets` in [`skills/wiro-media-assets/SKILL.md`](./skills/wiro-media-assets/SKILL.md) makes images, social cards, icons, short videos, voice-overs and 3D models for a project, sizes them and puts them where the project's framework expects them.
 
-Claude Code and Antigravity pick them up with the plugin. To add them to Codex, Cursor and other agents that read skills, run:
+Claude Code, Gemini CLI, Cursor, Devin and Antigravity pick them up with the plugin, and the Kiro power carries them too. To add them to Codex and other agents that read skills, run:
 
 ```bash
-npx skills add wiroai/Wiro-Plugin --skill wiro-ai --skill wiro-realtime-voice
+npx skills add wiroai/Wiro-Plugin --skill wiro-ai --skill wiro-realtime-voice --skill wiro-workflows --skill wiro-agents --skill wiro-media-assets
 ```
 
 The Wiro SDKs and packages ship their own skills: `wiro-flutter` (wiroai/Dart-QuickStart), `wiro-react-native` (wiroai/ReactNative-QuickStart), `wiro-swift` (wiroai/Swift-QuickStart), `wiro-kotlin` (wiroai/Kotlin-QuickStart), `wiro-n8n` (wiroai/n8n-nodes-wiroai) and `wiro-llm` (wiroai/Wiro-LLM), which covers the LLM gateway.
 
+## Slash commands
+
+Type a command, then say what you want in plain words. Options are optional, and a command asks for anything it needs that you left out.
+
+| Command | What it does |
+| --- | --- |
+| `image` | Generate images from a prompt |
+| `edit-image` | Edit an image: a new style, things added or removed, the background removed, or a sharper, larger version |
+| `video` | Make a video from text, or animate a start image |
+| `speech` | Turn text into speech or a voice-over, in the voice and language you pick |
+| `music` | Make an instrumental track or a song with lyrics |
+| `transcribe` | Turn audio or video into text or captions, with timestamps and speaker labels when the model has them |
+| `3d` | Turn a photo or a description into a 3D model file, such as GLB |
+| `models` | Search the catalog of 1,000+ models, compare them and read their inputs and prices, for free |
+| `workflow` | List, run, create and edit workflows, or have the Workflow Agent draft one |
+| `agent` | Ask Studio to create media, message your own agents, check on them, browse templates and deploy one |
+| `task` | Check a task, wait for it, show its files and cost, or stop it |
+
+The media commands share their options: `--model owner/slug` picks the model, `--save` or `--save <path>` downloads the results into your project, and model settings such as `--ratio 16:9`, `--duration 5`, `--voice <name>` or `--count 3` go straight to the model. Without `--model`, the command picks a fitting model from the catalog and names one or two others with their prices.
+
+Before a paid run, every command tells you the model, the settings and the expected cost. It goes ahead when the run costs $1 or less, and asks first when it costs more, makes more than four files or is priced after the run. Searching the catalog, reading prices and checking tasks are free.
+
+How each assistant names them:
+
+| Assistant | Example | What ships |
+| --- | --- | --- |
+| Claude Code | `/wiro-ai:image` | Commands in `commands/` |
+| Gemini CLI | `/wiro:image` | Commands in `commands/wiro/` |
+| Cursor | `/wiro-image` | Commands in `cursor/commands/` |
+| Devin | `/wiro-ai:image` | Skills you call by name, in `devin/skills/` |
+| Antigravity | `/wiro-ai:image` | Skills that run only when you call them, in `antigravity/skills/` |
+| Kiro | `/wiro-image` | Skills in the power, in `kiro/skills/` |
+
+Devin, Antigravity and Kiro have no command files, so the same commands ship there as skills you call with `/`. Codex and other agents that only read skills get the five agent skills, not the commands. Any MCP client that shows MCP prompts also gets four from the server itself: `build_workflow`, `deploy_agent`, `create_with_studio` and `talk_to_my_agent`.
+
 ## Try it
+
+**Commands**
+
+- `/wiro-ai:image a flat illustration of a steaming coffee cup, warm morning light, 16:9 --save`
+- `/wiro-ai:edit-image https://example.com/mug.jpg put the mug on a marble kitchen counter`
+- `/wiro-ai:video --image https://example.com/cup.png steam rising from the cup, slow push-in, 5 seconds`
+- `/wiro-ai:speech "Good morning. Your coffee is ready." warm, calm voice --save public/audio/`
+- `/wiro-ai:transcribe https://example.com/interview.mp3 --srt --save`
+- `/wiro-ai:models cheapest text to speech model that speaks Turkish`
+- `/wiro-ai:workflow create a product photo in, a 5 second ad video out`
+- `/wiro-ai:agent studio three square product shots of a ceramic mug`
+- `/wiro-ai:task last`
+
+In Gemini CLI, type `/wiro:image` instead of `/wiro-ai:image`; in Cursor and Kiro, `/wiro-image`.
 
 **Models**
 
@@ -137,9 +191,19 @@ The Wiro SDKs and packages ship their own skills: `wiro-flutter` (wiroai/Dart-Qu
 | `.devin-plugin/plugin.json` | Devin |
 | `.antigravity-plugin/plugin.json`, `.antigravity-plugin/README.md`, `mcp_config.json` | Antigravity |
 | `kiro/plugin.json`, `kiro/mcp.json` | Kiro |
-| `skills/wiro-ai/SKILL.md`, `skills/wiro-realtime-voice/SKILL.md` | Claude Code and Antigravity with the plugin, and other agents through `npx skills add` |
+| `skills/<name>/SKILL.md` (five skills) | Claude Code, Gemini CLI, Cursor, Devin and Antigravity with the plugin, and other agents through `npx skills add` |
+| `commands/*.md` | Claude Code slash commands |
+| `commands/wiro/*.toml` | Gemini CLI slash commands |
+| `cursor/commands/` | Cursor slash commands |
+| `devin/skills/` | Devin, the commands as skills |
+| `antigravity/skills/` | Antigravity, the commands as skills |
+| `kiro/skills/` | Kiro, the commands and the agent skills inside the power |
+| `src/commands/`, `src/partials/` | The one source every assistant's commands are built from |
+| `scripts/` | `build-commands.mjs` builds the command files; `validate.mjs` and `validate-schemas.mjs` check them |
 
 All of them connect to the same hosted server, which runs the MCP tools from the open-source [wiroai/Wiro-MCP](https://github.com/wiroai/Wiro-MCP) package.
+
+To change a command, edit its file in `src/commands/` (or a shared part in `src/partials/`) and run `node scripts/build-commands.mjs`, which writes the files for every assistant. CI fails when they differ from the source, and it also runs the Claude Code and Gemini CLI validators and checks the manifests against the Cursor, Antigravity and Kiro schemas.
 
 ## Support, terms and privacy
 
