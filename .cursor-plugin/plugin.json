@@ -11,5 +11,6 @@
   "repository": "https://github.com/wiroai/Wiro-Plugin",
   "license": "MIT",
   "keywords": ["wiro", "ai-models", "image-generation", "video-generation", "text-to-speech", "llm", "workflows", "ai-agents", "mcp"],
-  "logo": "assets/logo.png"
+  "logo": "assets/logo.png",
+  "commands": "./cursor/commands/"
 }
