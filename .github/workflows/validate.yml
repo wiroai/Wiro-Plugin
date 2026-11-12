@@ -1,0 +1,72 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Manifests, commands and skills
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+
+      - name: Generated commands match src/
+        run: node scripts/build-commands.mjs --check
+
+      - name: Versions, paths, front matter and style
+        run: node scripts/validate.mjs
+
+      - name: Gemini CLI commands parse as TOML
+        run: |
+          python3 - <<'PY'
+          import glob, tomllib
+          files = sorted(glob.glob("commands/wiro/*.toml"))
+          for path in files:
+              with open(path, "rb") as handle:
+                  data = tomllib.load(handle)
+              assert set(data) == {"description", "prompt"}, path
+              assert data["prompt"].count("{{args}}") == 1, path
+          print(f"{len(files)} TOML commands parse")
+          PY
+
+      - name: Claude Code validator
+        run: |
+          npx -y @anthropic-ai/claude-code@2.1.322 plugin validate --strict .
+          npx -y @anthropic-ai/claude-code@2.1.322 plugin validate --strict .claude-plugin/marketplace.json
+          npx -y @anthropic-ai/claude-code@2.1.322 plugin validate --strict ./commands
+          npx -y @anthropic-ai/claude-code@2.1.322 plugin validate --strict ./skills
+
+      - name: Gemini CLI validator
+        run: npx -y @google/gemini-cli@0.68.0 extensions validate .
+
+      - name: Cursor, Antigravity and Kiro schemas
+        run: |
+          dir="$RUNNER_TEMP/schemas"
+          mkdir -p "$dir"
+          cp scripts/validate-schemas.mjs "$dir/"
+          cd "$dir"
+          npm init -y > /dev/null
+          npm install --no-save --no-audit --no-fund ajv@8 ajv-formats@3 > /dev/null
+          curl -fsSL --retry 3 -o cursor-plugin.schema.json https://raw.githubusercontent.com/cursor/plugins/main/schemas/plugin.schema.json
+          curl -fsSL --retry 3 -o antigravity-plugin.schema.json https://antigravity.google/schemas/v1/plugin.json
+          curl -fsSL --retry 3 -o agent-plugin.schema.json https://agent-plugins.org/schemas/1.0.0/plugin.schema.json
+          curl -fsSL --retry 3 -o agent-mcp.schema.json https://agent-plugins.org/schemas/1.0.0/mcp.schema.json
+          node validate-schemas.mjs "$GITHUB_WORKSPACE" "$dir"
