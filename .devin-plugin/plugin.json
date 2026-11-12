@@ -13,6 +13,7 @@
   "license": "MIT",
   "logo": "assets/logo.png",
   "keywords": ["AI & Machine Learning"],
+  "skills": ["./skills", "./devin/skills"],
   "mcpServers": {
     "wiro": {
       "url": "https://mcp.wiro.ai/v1"

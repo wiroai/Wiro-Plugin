@@ -18,5 +18,6 @@
   "homepage": "https://wiro.ai/docs/wiro-mcp-server",
   "repository": "https://github.com/wiroai/Wiro-Plugin",
   "license": "MIT",
-  "keywords": ["wiro", "ai-models", "image-generation", "video-generation", "text-to-speech", "llm", "workflows", "ai-agents", "mcp"]
+  "keywords": ["wiro", "ai-models", "image-generation", "video-generation", "text-to-speech", "llm", "workflows", "ai-agents", "mcp"],
+  "skills": "antigravity/skills"
 }
