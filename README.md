@@ -109,6 +109,8 @@ npx skills add wiroai/Wiro-Plugin --skill wiro-ai --skill wiro-realtime-voice --
 
 The Wiro SDKs and packages ship their own skills: `wiro-flutter` (wiroai/Dart-QuickStart), `wiro-react-native` (wiroai/ReactNative-QuickStart), `wiro-swift` (wiroai/Swift-QuickStart), `wiro-kotlin` (wiroai/Kotlin-QuickStart), `wiro-n8n` (wiroai/n8n-nodes-wiroai) and `wiro-llm` (wiroai/Wiro-LLM), which covers the LLM gateway.
 
+For agents without this plugin, [wiroai/Wiro-Skills](https://github.com/wiroai/Wiro-Skills) has eight skills that do the jobs of the slash commands below: `wiro-image`, `wiro-edit-image`, `wiro-video`, `wiro-music`, `wiro-speech`, `wiro-transcribe`, `wiro-3d` and `wiro-models`. Add them with `npx skills add wiroai/Wiro-Skills`.
+
 ## Slash commands
 
 Type a command, then say what you want in plain words. Options are optional, and a command asks for anything it needs that you left out.
@@ -228,6 +230,8 @@ All of them connect to the same hosted server, which runs the MCP tools from the
 
 To change a command, edit its file in `src/commands/` (or a shared part in `src/partials/`) and run `node scripts/build-commands.mjs`, which writes the files for every assistant. CI fails when they differ from the source, and it also runs the Claude Code and Gemini CLI validators and checks the manifests against the Cursor, Antigravity and Kiro schemas.
 
+The skills in [wiroai/Wiro-Skills](https://github.com/wiroai/Wiro-Skills) are built from the same sources. After changing the image, edit-image, video, music, speech, transcribe, 3d or models command, run `node scripts/build.mjs --plugin ../Wiro-Plugin` in a checkout of Wiro-Skills next to this one; its CI fails until the skills match.
+
 ## Support, terms and privacy
 
 Email [support@wiro.ai](mailto:support@wiro.ai) or open an issue in this repository. Use of Wiro AI through the plugin is covered by the Wiro AI [Terms of Service](https://wiro.ai/agreement/terms-of-service) and [Privacy Policy](https://wiro.ai/agreement/privacy-policy).
@@ -237,6 +241,7 @@ Email [support@wiro.ai](mailto:support@wiro.ai) or open an issue in this reposit
 | Repository | What it is |
 | --- | --- |
 | [Wiro-MCP](https://github.com/wiroai/Wiro-MCP) | Official MCP server for Wiro AI, [`@wiro-ai/wiro-mcp` on npm](https://www.npmjs.com/package/@wiro-ai/wiro-mcp) |
+| [Wiro-Skills](https://github.com/wiroai/Wiro-Skills) | Agent skills for images, image edits, video, music, speech, transcripts, 3D and model search |
 | [Wiro-LLM](https://github.com/wiroai/Wiro-LLM) | Vercel AI SDK provider for chat, images, speech, transcription and video, [`@wiro-ai/wiro-llm` on npm](https://www.npmjs.com/package/@wiro-ai/wiro-llm) |
 | [Wiro-Chromium-Extension](https://github.com/wiroai/Wiro-Chromium-Extension) | Wiro AI extension for Chrome, Edge, Opera and Brave |
 | [Wiro-Firefox-Extension](https://github.com/wiroai/Wiro-Firefox-Extension) | Wiro AI add-on for Firefox |
