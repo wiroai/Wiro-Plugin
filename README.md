@@ -146,6 +146,28 @@ Devin, Antigravity and Kiro have no command files, so the same commands ship the
 
 ## Try it
 
+These are real Claude Code sessions with the plugin, shown in a clean terminal view.
+
+**Make an image.** `/wiro-ai:image` picks a model from the catalog, gives the price before it runs and saves the file into the project.
+
+<img src="docs/screenshots/claude-code-image.png" alt="Claude Code running /wiro-ai:image: it searches the catalog, picks FLUX.2 Dev Turbo at $0.01, runs it and saves the PNG to public/" width="820">
+
+<img src="docs/screenshots/image-result.jpg" alt="The image it made: a flat illustration of a steaming coffee cup on a wooden table in warm morning light" width="420">
+
+**Animate it.** `/wiro-ai:video` uses that image as the first frame, estimates the cost and waits until the clip is ready.
+
+<img src="docs/screenshots/claude-code-video.png" alt="Claude Code running /wiro-ai:video with a start image: it picks an image to video model, estimates about $0.11, charges $0.084 and saves the MP4 to public/videos/" width="820">
+
+<img src="docs/screenshots/video-frame.jpg" alt="A frame from the 5 second clip, with steam rising from the cup" width="420">
+
+**Compare models for free.** `/wiro-ai:models` reads the catalog and the prices without running anything.
+
+<img src="docs/screenshots/claude-code-models.png" alt="Claude Code running /wiro-ai:models: it compares text to speech models that speak Turkish in a table with their prices and names the cheapest" width="820">
+
+**Find an agent.** `/wiro-ai:agent templates` shows the agent templates that fit, with their plans, prices and what they need.
+
+<img src="docs/screenshots/claude-code-agent.png" alt="Claude Code running /wiro-ai:agent templates: it suggests the Social Manager and Video Creator templates with their Starter and Pro prices and the accounts they need" width="820">
+
 **Commands**
 
 - `/wiro-ai:image a flat illustration of a steaming coffee cup, warm morning light, 16:9 --save`
@@ -200,6 +222,7 @@ In Gemini CLI, type `/wiro:image` instead of `/wiro-ai:image`; in Cursor and Kir
 | `kiro/skills/` | Kiro, the commands and the agent skills inside the power |
 | `src/commands/`, `src/partials/` | The one source every assistant's commands are built from |
 | `scripts/` | `build-commands.mjs` builds the command files; `validate.mjs` and `validate-schemas.mjs` check them |
+| `docs/screenshots/` | The screenshots in this README |
 
 All of them connect to the same hosted server, which runs the MCP tools from the open-source [wiroai/Wiro-MCP](https://github.com/wiroai/Wiro-MCP) package.
 
