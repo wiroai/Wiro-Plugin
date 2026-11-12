@@ -107,7 +107,7 @@ Claude Code, Gemini CLI, Cursor, Devin and Antigravity pick them up with the plu
 npx skills add wiroai/Wiro-Plugin --skill wiro-ai --skill wiro-realtime-voice --skill wiro-workflows --skill wiro-agents --skill wiro-media-assets
 ```
 
-The Wiro SDKs and packages ship their own skills: `wiro-flutter` (wiroai/Dart-QuickStart), `wiro-react-native` (wiroai/ReactNative-QuickStart), `wiro-swift` (wiroai/Swift-QuickStart), `wiro-kotlin` (wiroai/Kotlin-QuickStart), `wiro-n8n` (wiroai/n8n-nodes-wiroai) and `wiro-llm` (wiroai/Wiro-LLM), which covers the LLM gateway.
+The Wiro SDKs and packages ship their own skills: `wiro-flutter` (wiroai/Dart-QuickStart), `wiro-react-native` (wiroai/ReactNative-QuickStart), `wiro-swift` (wiroai/Swift-QuickStart), `wiro-kotlin` (wiroai/Kotlin-QuickStart), `wiro-n8n` (wiroai/n8n-nodes-wiro) and `wiro-llm` (wiroai/Wiro-LLM), which covers the LLM gateway.
 
 For agents without this plugin, [wiroai/Wiro-Skills](https://github.com/wiroai/Wiro-Skills) has eight skills that do the jobs of the slash commands below: `wiro-image`, `wiro-edit-image`, `wiro-video`, `wiro-music`, `wiro-speech`, `wiro-transcribe`, `wiro-3d` and `wiro-models`. Add them with `npx skills add wiroai/Wiro-Skills`.
 
@@ -254,7 +254,6 @@ Email [support@wiro.ai](mailto:support@wiro.ai) or open an issue in this reposit
 | [Kotlin-Realtime](https://github.com/wiroai/Kotlin-Realtime) | Realtime voice AI example for Android |
 | [Dart-Realtime](https://github.com/wiroai/Dart-Realtime) | Realtime voice AI example for Flutter |
 | [ReactNative-Realtime](https://github.com/wiroai/ReactNative-Realtime) | Realtime voice AI example for React Native |
-| [n8n-nodes-wiroai](https://github.com/wiroai/n8n-nodes-wiroai) | Wiro AI nodes for n8n, [`@wiro-ai/n8n-nodes-wiroai` on npm](https://www.npmjs.com/package/@wiro-ai/n8n-nodes-wiroai) |
 | [n8n-nodes-wiro](https://github.com/wiroai/n8n-nodes-wiro) | One Wiro AI node for n8n with a searchable model picker, [`@wiro-ai/n8n-nodes-wiro` on npm](https://www.npmjs.com/package/@wiro-ai/n8n-nodes-wiro) |
 | [Wiro-Dify-Plugin](https://github.com/wiroai/Wiro-Dify-Plugin) | Wiro AI plugins for Dify: the LLM gateway as a model provider, plus image, video, speech and music tools |
 | [Wiro-ComfyUI](https://github.com/wiroai/Wiro-ComfyUI) | Wiro AI nodes for ComfyUI |
