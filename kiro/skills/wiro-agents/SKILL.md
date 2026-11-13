@@ -68,7 +68,7 @@ With the Wiro MCP tools, read `get_playbook` with the topic "agents" (and "billi
 
 ## Plans and credits
 
-`manage_agent_billing` handles the plan; an action that charges only quotes until it is repeated with `confirm: true`.
+`manage_agent_billing` handles the plan; without `confirm: true` every action only quotes, and an action that charges also needs `confirm_charge_usd` with the quoted amount.
 
 - `subscribe` starts a plan for an agent without one. `change_plan` moves it to another `plan`: a higher plan starts now and charges the difference for the rest of the period, a lower plan starts at the next renewal with no charge or refund, and the agent's own plan cancels a scheduled move down. `buy_credits` adds a credit pack on any plan (packs last 180 days). `cancel` stops the next renewal with no refund; the agent works until the period ends. `renew` undoes a cancellation for free while the period lasts.
 - `apply_agent_skills` turns skills on or off for free: the plan's price and credits stay the same. Ask the user first, name the skills that come along because others depend on them, and say the agent restarts to pick up the change.
