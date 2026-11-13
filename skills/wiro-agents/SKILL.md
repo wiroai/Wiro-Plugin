@@ -18,18 +18,18 @@ With the Wiro MCP tools, read `get_playbook` with the topic "agents" (and "billi
 
 ## Templates, skills and plans
 
-- A template is a ready agent, such as Social Manager, Google Review Manager, Meta Ads Manager or Voice Receptionist. `get_agent_template` shows its skills, the exact price and credits of each tier, the credentials it needs, its chat channels and models.
-- A custom build starts from skills: `list_agent_skills` lists them with prices, credentials and dependencies. Its Starter price is the sum of its skills' prices, never less than 4 USD, and the `deploy_agent` quote gives the Pro price.
-- Every agent has a Starter or Pro plan with monthly credits; 100 credits are worth 1 USD. Both tiers run the same skills; Pro has a larger pool and can buy credit packs. No plan sets a number of posts or messages: credits pay for each turn of the agent's chat and scheduled tasks.
+- A template is a ready agent, such as Social Manager, Google Review Manager, Meta Ads Manager or Voice Receptionist. `get_agent_template` shows its skills, the plans with their exact price and credits, the credentials it needs, its chat channels and models.
+- A custom build starts from skills: `list_agent_skills` lists them with their credentials and dependencies. Skills have no price of their own: a custom build pays its plan's price, like a template.
+- Every agent has one of three monthly plans, Starter, Pro or Max, each with a pool of monthly credits; 100 credits are worth 1 USD. Every plan runs every skill and can buy credit packs; a larger plan only gives a larger pool. No plan sets a number of posts or messages: credits pay for each turn of the agent's chat and scheduled tasks.
 - Plans the tools start are paid from the wallet when they start and then every 30 days until cancelled. Plans paid by card are managed in the Wiro dashboard.
 - Model runs the agent starts through its skills, such as images, videos or voice calls, are billed like normal model runs to the wallet of the workspace that owns the Wiro project connected to the agent, not from its credits. Name this next to the plan price, and for a voice agent, the phone provider's own call fees too.
 - In a team workspace only team admins can deploy, and only team admins or the person who deployed an agent can pay for or change it.
 
 ## Deploy
 
-1. Pick a template, or skills for a custom build, and the tier. Check the balance and the paying wallet with `get_account`.
+1. Pick a template, or skills for a custom build, and the plan. Check the balance and the paying wallet with `get_account`.
 2. Before any charge, tell the user which credentials the agent needs and how each one connects (a sign-in link, a token or their own app keys): read each with `list_agent_skills` and the credential key `get_agent_template` shows for it. Never assume one service connects like another.
-3. Call `deploy_agent` without `confirm`. The quote gives the amount charged now, the monthly credits, the paying wallet and its balance, and the other tier's price. Show it, with the fact that the plan renews every 30 days until it is cancelled.
+3. Call `deploy_agent` without `confirm`. The quote gives the amount charged now, the monthly credits, the paying wallet and its balance, and the other plans' prices. Show it, with the fact that the plan renews every 30 days until it is cancelled.
 4. After a clear yes to that amount, repeat the call as the quote's `nextAction` shows: `confirm: true` with `confirm_charge_usd` set to the quoted amount. If the price changed, nothing is charged and a new quote comes back.
 5. The agent starts by itself, even with credentials missing. Wait with `get_my_agent` (`wait_seconds`) until it runs, then set up what is missing together.
 6. Never repeat a deploy that timed out or whose outcome is unknown: check `list_my_agents` first.
@@ -68,10 +68,10 @@ With the Wiro MCP tools, read `get_playbook` with the topic "agents" (and "billi
 
 ## Plans and credits
 
-`manage_agent_billing` handles the plan; without `confirm: true` every action only quotes.
+`manage_agent_billing` handles the plan; an action that charges only quotes until it is repeated with `confirm: true`.
 
-- `subscribe` starts a plan for an agent without one. `upgrade_to_pro` charges the difference for the rest of the period now. `buy_credits` adds a credit pack on Pro (packs last 180 days). `cancel` stops the next renewal with no refund; the agent works until the period ends. `renew` undoes a cancellation for free while the period lasts.
-- `apply_agent_skills` turns skills on or off, and the price and credits follow. Confirm with the quote's `idempotency_key`. The quote names skills added because others depend on them: mention them before the yes.
+- `subscribe` starts a plan for an agent without one. `change_plan` moves it to another `plan`: a higher plan starts now and charges the difference for the rest of the period, a lower plan starts at the next renewal with no charge or refund, and the agent's own plan cancels a scheduled move down. `buy_credits` adds a credit pack on any plan (packs last 180 days). `cancel` stops the next renewal with no refund; the agent works until the period ends. `renew` undoes a cancellation for free while the period lasts.
+- `apply_agent_skills` turns skills on or off for free: the plan's price and credits stay the same. Ask the user first, name the skills that come along because others depend on them, and say the agent restarts to pick up the change.
 - `get_agent_activity` (usage) shows the credits each turn used and the credits left.
 
 ## Remove an agent

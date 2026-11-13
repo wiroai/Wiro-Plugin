@@ -14,7 +14,7 @@ There is no key to copy. The first time the server connects, Antigravity opens t
 
 ## Pricing
 
-The plugin is free. Model runs are billed to your Wiro wallet at the model's listed price, workflow runs for their model steps, and chats with Studio after each reply. Deploying an agent, changing its plan or skills, or buying extra credits shows the price and asks before charging.
+The plugin is free. Model runs are billed to your Wiro wallet at the model's listed price, workflow runs for their model steps, and chats with Studio after each reply. Deploying an agent, moving it to a higher plan or buying extra credits shows the price and asks before charging; turning skills on or off is free.
 
 ## Try it
 

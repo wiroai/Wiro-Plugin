@@ -153,7 +153,7 @@ A workflow is a saved chain of model steps and built-in utility steps, with its 
 
 ## Hosted agents
 
-Wiro Agents are assistants that keep running on Wiro: they keep conversation memory, connect to outside services and use tools. You deploy one from a template (browse https://wiro.ai/agents) or build one from skills. Each agent runs on a monthly Starter or Pro plan with a pool of credits, and every turn uses credits by the tokens its model consumes. Deploying through the API takes the plan price from the wallet at once, so quote it and get a clear yes first. MCP: `list_agent_templates`, `deploy_agent` (quotes first, and charges only when called again with `confirm: true`), `send_agent_message`. See https://wiro.ai/docs/agent-overview.
+Wiro Agents are assistants that keep running on Wiro: they keep conversation memory, connect to outside services and use tools. You deploy one from a template (browse https://wiro.ai/agents) or build one from skills. Each agent runs on one of three monthly plans (Starter, Pro or Max) with a pool of credits, and every turn uses credits by the tokens its model consumes. Deploying through the API takes the plan price from the wallet at once, so quote it and get a clear yes first. MCP: `list_agent_templates`, `deploy_agent` (quotes first, and charges only when called again with `confirm: true`), `send_agent_message`. See https://wiro.ai/docs/agent-overview.
 
 ## Errors and limits
 

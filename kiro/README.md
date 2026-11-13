@@ -22,7 +22,7 @@ There is no key to copy. The first time the server connects, Kiro opens the Wiro
 
 ## Pricing
 
-The power is free. Model runs are billed to your Wiro wallet at the model's listed price. Deploying an agent, changing its plan or skills, or buying extra credits shows the price and asks before charging.
+The power is free. Model runs are billed to your Wiro wallet at the model's listed price. Deploying an agent, moving it to a higher plan or buying extra credits shows the price and asks before charging; turning skills on or off is free.
 
 ## Support and privacy
 
