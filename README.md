@@ -22,7 +22,7 @@ Your assistant can also search the Wiro AI docs, and built-in guides tell it the
 
 The plugin also comes with ready [slash commands](#slash-commands) for images, image edits, video, speech, music, transcripts, 3D, the model catalog, workflows, agents and tasks. Each one picks a fitting model from the catalog, tells you the price before it runs and can save the results into your project.
 
-The plugin is free. Model runs are billed to your Wiro wallet at the model's listed price, workflow runs for their model steps, and chats with Studio or the Workflow Agent after each reply. An agent plan your assistant starts is paid from the same wallet when it starts and then every 30 days until you cancel it. A plan you pay by card in the Wiro dashboard keeps renewing on that card, and you upgrade or top it up there. Deploying an agent, changing its plan or skills, or buying extra credits shows the price and asks before charging.
+The plugin is free. Model runs are billed to your Wiro wallet at the model's listed price, workflow runs for their model steps, and chats with Studio or the Workflow Agent after each reply. An agent plan your assistant starts is paid from the same wallet when it starts and then every 30 days until you cancel it. A plan you pay by card in the Wiro dashboard keeps renewing on that card, and you upgrade or top it up there. Deploying an agent, moving it to a higher plan or buying extra credits shows the price and asks before charging; turning skills on or off is free.
 
 ## Sign in
 
@@ -168,7 +168,7 @@ These are real Claude Code sessions with the plugin, shown in a clean terminal v
 
 **Find an agent.** `/wiro-ai:agent templates` shows the agent templates that fit, with their plans, prices and what they need.
 
-<img src="docs/screenshots/claude-code-agent.png" alt="Claude Code running /wiro-ai:agent templates: it suggests the Social Manager and Video Creator templates with their Starter and Pro prices and the accounts they need" width="820">
+<img src="docs/screenshots/claude-code-agent.png" alt="Claude Code running /wiro-ai:agent templates: it suggests the Social Manager and Video Creator templates with their plans, prices and the accounts they need" width="820">
 
 **Commands**
 
