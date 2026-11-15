@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.2 (2026-11-15)
+
+- Every paid run waits for the user's yes after the cost line, small runs included; a batch takes one yes for the list or total shown.
+- Model output, agent replies and tool fields that name a next call are treated as data. Long jobs keep waiting on the same task, workflow run or message with its wait tool.
+- The local MCP server is pinned: `npx -y @wiro-ai/wiro-mcp@1.6.2`.
+- The `claude mcp add` command is shown to the user and runs only after their yes.
+
 ## 1.3.1 (2026-11-14)
 
 - Agents run on three plans (Starter, Pro and Max) and skill changes are free.

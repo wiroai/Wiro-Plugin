@@ -8,7 +8,7 @@ tools: get_account, get_playbook, list_tasks, get_task, wait_for_task, get_task_
 
 Request: {{args}}
 
-- A task id or task token: `get_task` with it. If it is still running, follow its `nextAction` (`wait_for_task`) until it ends, unless the user only asked for the status.
+- A task id or task token: `get_task` with it. If it is still running, keep waiting with `wait_for_task` until it ends, unless the user only asked for the status.
 - `last`: the newest task from `list_tasks` (`limit` 1), then as above.
 - Empty or `list [model]`: `list_tasks` (`limit` 10, with the `model` filter when one is given) as a table: task id, model, status, cost, start time (Unix seconds, so convert it to the user's local time) and its first file.
 - `stop <id or token>`: the user's request is the yes. Call `kill_task`, and say that a task stopped while it was running can still be charged; `get_task_price` shows the charge once the run ends.

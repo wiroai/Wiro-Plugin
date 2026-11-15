@@ -19,7 +19,7 @@ Options the request may carry: `--model owner/slug`, `--voice <name>`, `--langua
 ## Run
 
 1. Voices come from the schema options. When the user named none, pick one that fits the language and the tone of the text, say which, and name two others they can ask for.
-2. Speech is often priced per character or per second, so work out the estimate from the length of the text. Write the cost line, then call `run_model` and follow `nextAction` (`wait_for_task`) until the task completes.
+2. Speech is often priced per character or per second, so work out the estimate from the length of the text. Write the cost line and wait for a yes, then call `run_model` and keep waiting with `wait_for_task` until the task completes.
 3. Give the audio link and the cost.
 
 {{> save folders="such as `public/audio/`, `static/audio/` or `assets/audio/`"}}

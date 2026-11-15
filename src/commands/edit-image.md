@@ -21,7 +21,7 @@ Options the request may carry: `--model owner/slug`, `--ratio 4:5`, `--size 2K`,
 ## Run
 
 1. Put the image link (or links) into the schema's image field and the change into its prompt field, written as an instruction ("replace the sky with a sunset, keep the building unchanged"). Keep the aspect ratio of the input unless the user asked for another.
-2. Write the cost line, then call `run_model`. Follow `nextAction` (`wait_for_task`) until the task completes.
+2. Write the cost line and wait for a yes, then call `run_model`. Keep waiting with `wait_for_task` until the task completes.
 3. Show the edited image inline with its link, and the cost.
 
 {{> save folders="next to the original, or such as `public/images/` or `assets/`"}}

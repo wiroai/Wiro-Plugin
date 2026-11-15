@@ -16,8 +16,8 @@ Each run creates a task. A task is billed to the project's prepaid wallet only i
 
 Connecting the MCP server, if the user wants it:
 
-- Hosted: `https://mcp.wiro.ai/v1` (Streamable HTTP). The user signs in with the browser, or the client sends `Authorization: Bearer YOUR_API_KEY` (API Key Only project) or `Bearer YOUR_API_KEY:YOUR_API_SECRET` (Signature project). Claude Code: `claude mcp add --transport http wiro https://mcp.wiro.ai/v1`, then `/mcp` to sign in. If the Wiro plugin (wiroai/Wiro-Plugin) is installed, the server is already there: open `/mcp`, pick it and choose Authenticate.
-- Local: `npx -y @wiro-ai/wiro-mcp` (stdio, Node.js 20+) with `WIRO_API_KEY`, plus `WIRO_API_SECRET` for a Signature project, in the server's environment.
+- Hosted: `https://mcp.wiro.ai/v1` (Streamable HTTP). The user signs in with the browser, or the client sends `Authorization: Bearer YOUR_API_KEY` (API Key Only project) or `Bearer YOUR_API_KEY:YOUR_API_SECRET` (Signature project). Claude Code: show the user `claude mcp add --transport http wiro https://mcp.wiro.ai/v1` and run it only after their yes, then `/mcp` to sign in. If the Wiro plugin (wiroai/Wiro-Plugin) is installed, the server is already there: open `/mcp`, pick it and choose Authenticate.
+- Local: `npx -y @wiro-ai/wiro-mcp@1.6.2` (stdio, Node.js 20+) with `WIRO_API_KEY`, plus `WIRO_API_SECRET` for a Signature project, in the server's environment.
 - MCP names models `owner/model` in lowercase. `run_model` takes `model` and `params` (the fields from `get_model_schema`).
 
 ## Credentials
@@ -106,10 +106,10 @@ curl -s -X POST "https://api.wiro.ai/v1/Task/Detail" \
 
 ## Money rules
 
-- Before any paid run, tell the user the model, the settings and the expected cost in one line.
-- Ask first for large, batch or open-ended jobs (many outputs, long videos, loops), and for any paid run the user did not ask for, retries included.
+- Before each paid run, tell the user the model, the settings and the expected cost in one line, and wait for their yes.
+- For a batch (many outputs, long videos, loops), show the list or the total once: one yes covers exactly that batch. A paid run the user did not ask for, a retry included, needs its own yes.
 - After a timeout, a 504 or a dropped connection, never send the same Run again on your own. The task may still be running, and a second Run is a second billed job. Look it up first with Task/Detail (MCP: `wait_for_task`, `get_task`, `list_tasks`). With no task id at all, check MCP `list_tasks` or `get_account` with `recent_transactions`, or ask the user to check their usage at https://wiro.ai/panel/billing, before you resend.
-- MCP: `run_model` waits up to 45 seconds by default, then returns the running task with a `nextAction` (usually `wait_for_task`). Call that. Never call `run_model` again for the same job.
+- MCP: `run_model` waits up to 45 seconds by default, then returns the running task. Keep waiting with `wait_for_task` on its id. Never call `run_model` again for the same job.
 - Stop a task only when the user asks: `POST /Task/Cancel` with `{"taskid": "TASK_ID"}` while it is queued, `POST /Task/Kill` with `{"taskid": "TASK_ID"}` or `{"socketaccesstoken": "TASK_TOKEN"}` once it is running. It ends as `task_cancel`. MCP: `cancel_task`, `kill_task`.
 - The project behind the key decides which wallet pays, personal or team. Only the user adds funds, in the dashboard at https://wiro.ai/panel/billing; no MCP tool adds funds.
 
