@@ -21,8 +21,8 @@ Options the request may carry: `--model owner/slug`, `--image <link or path>`, `
 ## Run
 
 1. Fill `params` from the schema: the prompt (describe the subject, the motion and the camera), the duration, aspect ratio and resolution asked for, and the image field when there is a start image. Use a duration the schema allows.
-2. Video is usually priced per second or by resolution, so work out the estimate for this length. Write the cost line, then call `run_model`.
-3. A video takes a few minutes. Say so, then follow `nextAction` (`wait_for_task`) until the task completes. Never start it again because a wait ran out.
+2. Video is usually priced per second or by resolution, so work out the estimate for this length. Write the cost line and wait for a yes, then call `run_model`.
+3. A video takes a few minutes. Say so, then keep waiting with `wait_for_task` until the task completes. Never start it again because a wait ran out.
 4. Give the video link, any poster image, and the cost.
 
 {{> save folders="such as `public/videos/`, `static/` or `assets/`"}}

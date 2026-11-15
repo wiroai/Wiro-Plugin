@@ -19,7 +19,7 @@ Options the request may carry: `--model owner/slug`, `--duration 30`, `--instrum
 ## Run
 
 1. Fill `params` from the schema: the description in its prompt or style field, the lyrics in its lyrics field when it has one, and a duration within its limits. If the user gave no lyrics for a song, write short ones that fit the request and show them in your cost line.
-2. Music is often priced per second of output, so work out the estimate for this length. Write the cost line, then call `run_model` and follow `nextAction` (`wait_for_task`) until the task completes.
+2. Music is often priced per second of output, so work out the estimate for this length. Write the cost line and wait for a yes, then call `run_model` and keep waiting with `wait_for_task` until the task completes.
 3. Give the audio link (or links) and the cost.
 
 {{> save folders="such as `public/audio/` or `assets/audio/`"}}

@@ -23,7 +23,7 @@ Before you promise timestamps or a caption format, check that the schema has an 
 ## Run
 
 1. Speech to text is often priced per second of audio. Find the length (for a local file, `ffprobe -v error -show_entries format=duration -of csv=p=0 <file>` when ffmpeg is installed) and estimate from it. Say when the estimate is rough.
-2. Write the cost line, then call `run_model` and follow `nextAction` (`wait_for_task`) until the task completes.
+2. Write the cost line and wait for a yes, then call `run_model` and keep waiting with `wait_for_task` until the task completes.
 3. Show the transcript: all of it when it is short, otherwise the first lines and where the rest is. Some models return the transcript as a text file: read that file.
 4. With `--srt` or `--vtt`, give the caption file the model made, or build one from its timestamps.
 

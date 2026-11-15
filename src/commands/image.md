@@ -21,7 +21,7 @@ For a real product, logo or person the user has a photo of, use an image editing
 ## Run
 
 1. Fill `params` from the schema: the prompt, and the aspect ratio, resolution, count and format the user asked for. Leave the rest out so the defaults apply. For several images, use the model's count field when it has one, otherwise start one run per image with `wait: false` and wait on each task.
-2. Write the cost line, then call `run_model`. Follow `nextAction` (`wait_for_task`) until the task completes.
+2. Write the cost line and wait for a yes, then call `run_model`. Keep waiting with `wait_for_task` until the task completes.
 3. Show every image inline with its link, and the cost. If the result shows only the list price, `get_task_price` gives the charge a moment later.
 
 {{> save folders="such as `public/images/`, `static/`, `assets/` or `src/assets/`"}}

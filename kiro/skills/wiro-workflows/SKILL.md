@@ -72,19 +72,19 @@ To chain a video after it, add a step that reads the image, such as `"input": { 
 
 The Workflow Agent designs and edits workflows by chat, choosing current models and wiring the steps. It never saves or runs anything.
 
-- Cost: the workspace wallet needs at least 10 USD to send a message, and each turn's chat usage is billed after the turn. Say this in one line and check `get_account` before the first message. A question the catalog answers for free, such as which model is cheapest, needs no turn.
+- Cost: the workspace wallet needs at least 10 USD to send a message, and each turn's chat usage is billed after the turn. Say this in one line and check `get_account` before the first message, and wait for a yes before each turn. A question the catalog answers for free, such as which model is cheapest, needs no turn.
 - Make the first message complete: what goes in, what should come out, and the user's limits (budget, speed, quality, a model). Ask the user one question first when the idea is thin.
-- `send_agent_message` with agent "workflow-agent", the brief and a new session name. Follow `nextAction` (`get_agent_message`) until the turn completes; never send the message again. One turn at a time per session.
+- `send_agent_message` with agent "workflow-agent", the brief and a new session name. Keep waiting with `get_agent_message` until the turn completes; never send the message again. One turn at a time per session.
 - To edit an existing workflow, pass its full slug in `workflow`. The agent sees the graph, never the saved Start values.
 - A reply holds an explanation and zero or more proposals, each with its models, step count and any problems. Show them with the models' prices and the cost of one run. Send problems back in the same session.
-- Save the one the user picks with `save_workflow_from_agent`, passing the message and the proposal as the reply's `nextAction` shows. As a new workflow it is free and private; onto the attached workflow it replaces the steps, title and description, and the first call returns a summary to confirm with `confirm: true` after a yes.
+- Save the one the user picks with `save_workflow_from_agent`, passing the reply's `message_id`, its `session` and the proposal's `artifact_hash`. As a new workflow it is free and private; onto the attached workflow it replaces the steps, title and description, and the first call returns a summary to confirm with `confirm: true` after a yes.
 
 ## Run a workflow
 
 1. Read the Start fields with `get_workflow` (right after `create_workflow`, its result lists them).
-2. Estimate one run: the sum of each model step's price from `get_model_schema` at the settings the step uses, or what earlier runs cost in `list_workflow_runs`. Tell the user in one line.
+2. Estimate one run: the sum of each model step's price from `get_model_schema` at the settings the step uses, or what earlier runs cost in `list_workflow_runs`. Tell the user in one line and wait for their yes.
 3. `run_workflow` with the full slug and `input` keyed exactly like the Start fields: strings, numbers, booleans or arrays of strings; files are public URLs up to about 100 MB. A field left out uses its saved value, then its default.
-4. Follow `nextAction` (`wait_for_workflow_run`) until the status is `completed`, `failed`, `stopped` or `cancelled`. A video step can take many minutes. Never start the run again because a wait ran out.
+4. Keep waiting with `wait_for_workflow_run` until the status is `completed`, `failed`, `stopped` or `cancelled`. A video step can take many minutes. Never start the run again because a wait ran out.
 5. Show the End fields: files inline or as links, texts in full, and the cost.
 
 To test the first steps of a workflow you can edit, pass `breakpoint_node_id`: the run stops after that step's layer (not the last layer) as `stopped`. Check the outputs, then continue with `resume_workflow_run`.
