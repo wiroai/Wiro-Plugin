@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1 (2026-11-14)
+
+- Agents run on three plans (Starter, Pro and Max) and skill changes are free.
+
 ## 1.3.0 (2026-11-11)
 
 - Slash commands for images, image edits, video, speech, music, transcripts, 3D, the model catalog, workflows, agents and tasks: `/wiro-ai:image` in Claude Code, `/wiro:image` in Gemini CLI and `/wiro-image` in Cursor, and the same set as skills you call with `/` in Devin, Antigravity and Kiro. Each command picks its model from the catalog, gives the price before a paid run and can save the results into your project.
