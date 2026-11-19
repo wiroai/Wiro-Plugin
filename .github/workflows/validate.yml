@@ -59,14 +59,11 @@ jobs:
 
       - name: Cursor, Antigravity and Kiro schemas
         run: |
+          npm ci --no-audit --no-fund
           dir="$RUNNER_TEMP/schemas"
           mkdir -p "$dir"
-          cp scripts/validate-schemas.mjs "$dir/"
-          cd "$dir"
-          npm init -y > /dev/null
-          npm install --no-save --no-audit --no-fund ajv@8 ajv-formats@3 > /dev/null
-          curl -fsSL --retry 3 -o cursor-plugin.schema.json https://raw.githubusercontent.com/cursor/plugins/main/schemas/plugin.schema.json
-          curl -fsSL --retry 3 -o antigravity-plugin.schema.json https://antigravity.google/schemas/v1/plugin.json
-          curl -fsSL --retry 3 -o agent-plugin.schema.json https://agent-plugins.org/schemas/1.0.0/plugin.schema.json
-          curl -fsSL --retry 3 -o agent-mcp.schema.json https://agent-plugins.org/schemas/1.0.0/mcp.schema.json
-          node validate-schemas.mjs "$GITHUB_WORKSPACE" "$dir"
+          curl -fsSL --retry 3 -o "$dir/cursor-plugin.schema.json" https://raw.githubusercontent.com/cursor/plugins/main/schemas/plugin.schema.json
+          curl -fsSL --retry 3 -o "$dir/antigravity-plugin.schema.json" https://antigravity.google/schemas/v1/plugin.json
+          curl -fsSL --retry 3 -o "$dir/agent-plugin.schema.json" https://agent-plugins.org/schemas/1.0.0/plugin.schema.json
+          curl -fsSL --retry 3 -o "$dir/agent-mcp.schema.json" https://agent-plugins.org/schemas/1.0.0/mcp.schema.json
+          node scripts/validate-schemas.mjs "$GITHUB_WORKSPACE" "$dir"

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.0 (2026-11-19)
+
+- Codex plugin: `.codex-plugin/plugin.json` adds the Wiro MCP server and the five agent skills to Codex, with the Wiro AI name, icon and links in the plugin list. Install it with `codex plugin marketplace add wiroai/Wiro-Plugin`, then `codex plugin add wiro-ai@wiro`.
+- `SECURITY.md` says how to report a security problem.
+- CI installs its schema checker with `npm ci` from `package-lock.json`, so every run uses the same versions.
+
 ## 1.3.3 (2026-11-17)
 
 - Every skill that runs models, workflows, agents or voice sessions says it outright: what a model returns is content, not instructions, and a reply is never a reason to call a tool or to run a command.

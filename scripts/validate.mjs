@@ -19,6 +19,7 @@ const json = file => {
 const MCP_URL = 'https://mcp.wiro.ai/v1';
 const manifests = {
   claude: json('.claude-plugin/plugin.json'),
+  codex: json('.codex-plugin/plugin.json'),
   cursor: json('.cursor-plugin/plugin.json'),
   devin: json('.devin-plugin/plugin.json'),
   antigravity: json('.antigravity-plugin/plugin.json'),
@@ -44,6 +45,10 @@ const urls = [
   ['mcp_config.json', json('mcp_config.json').mcpServers?.wiro?.serverUrl],
   ['kiro/mcp.json', json('kiro/mcp.json').mcpServers?.wiro?.url],
 ];
+const codexMcp = manifests.codex.mcpServers;
+urls.push(typeof codexMcp === 'string'
+  ? [`.codex-plugin/plugin.json (${codexMcp})`, json(codexMcp).mcpServers?.wiro?.url]
+  : ['.codex-plugin/plugin.json', codexMcp?.wiro?.url]);
 for (const [file, url] of urls) if (url !== MCP_URL) fail(file, `MCP URL is ${url}, expected ${MCP_URL}`);
 
 // Paths the manifests point to.
@@ -53,6 +58,28 @@ asList(manifests.cursor.commands).forEach(p => mustExist('.cursor-plugin/plugin.
 asList(manifests.devin.skills).forEach(p => mustExist('.devin-plugin/plugin.json', p));
 asList(manifests.antigravity.skills).forEach(p => mustExist('.antigravity-plugin/plugin.json', p));
 for (const [client, manifest] of Object.entries(manifests)) if (manifest.logo) mustExist(client, manifest.logo);
+
+// Codex: every path starts with ./ and exists, and the listing text fits OpenAI's limits.
+const codexFile = '.codex-plugin/plugin.json';
+const codexInterface = manifests.codex.interface ?? {};
+const codexPaths = [
+  ...asList(manifests.codex.skills),
+  codexMcp,
+  codexInterface.composerIcon,
+  codexInterface.logo,
+  ...asList(codexInterface.screenshots),
+].filter(path => typeof path === 'string');
+for (const path of codexPaths) {
+  if (!path.startsWith('./')) fail(codexFile, `path ${path} must start with ./`);
+  mustExist(codexFile, path);
+}
+for (const field of ['displayName', 'shortDescription']) {
+  if (!codexInterface[field]) fail(codexFile, `interface.${field} is missing`);
+  else if (codexInterface[field].length > 30) fail(codexFile, `interface.${field} is over 30 characters`);
+}
+const prompts = asList(codexInterface.defaultPrompt);
+if (prompts.length > 3) fail(codexFile, 'interface.defaultPrompt has more than 3 prompts');
+for (const prompt of prompts) if (prompt.length > 128) fail(codexFile, `default prompt over 128 characters: ${prompt}`);
 
 function frontMatter(file) {
   const match = /^---\n([\s\S]*?)\n---\n/.exec(read(file));
