@@ -48,7 +48,7 @@ codex plugin marketplace add wiroai/Wiro-Plugin
 codex plugin add wiro-ai@wiro
 ```
 
-Then run `codex mcp login wiro` to sign in. The plugin adds the Wiro MCP server and the five agent skills.
+Then run `codex mcp login wiro` to sign in. The plugin adds the Wiro MCP server, the five agent skills and the [commands](#slash-commands), which you call with `$`, for example `$wiro-ai:image`.
 
 ### Gemini CLI
 
@@ -110,7 +110,7 @@ The repository also has five agent skills:
 - `wiro-agents` in [`skills/wiro-agents/SKILL.md`](./skills/wiro-agents/SKILL.md) covers agents from template to daily use: plans and prices, deploying, credentials and sign-ins, messages, scheduled tasks, plan changes and removal.
 - `wiro-media-assets` in [`skills/wiro-media-assets/SKILL.md`](./skills/wiro-media-assets/SKILL.md) makes images, social cards, icons, short videos, voice-overs and 3D models for a project, sizes them and puts them where the project's framework expects them.
 
-Claude Code, Codex, Gemini CLI, Cursor, Devin and Antigravity pick them up with the plugin, and the Kiro power carries them too. To add them to other agents that read skills, run:
+Claude Code, Gemini CLI, Cursor, Devin and Antigravity pick them up with the plugin, and the Kiro power and the Codex plugin carry them too. To add them to other agents that read skills, run:
 
 ```bash
 npx skills add wiroai/Wiro-Plugin --skill wiro-ai --skill wiro-realtime-voice --skill wiro-workflows --skill wiro-agents --skill wiro-media-assets
@@ -152,8 +152,9 @@ How each assistant names them:
 | Devin | `/wiro-ai:image` | Skills you call by name, in `devin/skills/` |
 | Antigravity | `/wiro-ai:image` | Skills that run only when you call them, in `antigravity/skills/` |
 | Kiro | `/wiro-image` | Skills in the power, in `kiro/skills/` |
+| Codex | `$wiro-ai:image` | Skills that run only when you call them, in `codex/skills/` |
 
-Devin, Antigravity and Kiro have no command files, so the same commands ship there as skills you call with `/`. Codex and other agents that only read skills get the five agent skills, not the commands. Any MCP client that shows MCP prompts also gets four from the server itself: `build_workflow`, `deploy_agent`, `create_with_studio` and `talk_to_my_agent`.
+Devin, Antigravity and Kiro have no command files, so the same commands ship there as skills you call with `/`. Codex gets them as skills too, and you call them with `$`. Other agents that only read skills get the five agent skills, not the commands. Any MCP client that shows MCP prompts also gets four from the server itself: `build_workflow`, `deploy_agent`, `create_with_studio` and `talk_to_my_agent`.
 
 ## Try it
 
@@ -191,7 +192,7 @@ These are real Claude Code sessions with the plugin, shown in a clean terminal v
 - `/wiro-ai:agent studio three square product shots of a ceramic mug`
 - `/wiro-ai:task last`
 
-In Gemini CLI, type `/wiro:image` instead of `/wiro-ai:image`; in Cursor and Kiro, `/wiro-image`.
+In Gemini CLI, type `/wiro:image` instead of `/wiro-ai:image`; in Cursor and Kiro, `/wiro-image`; in Codex, `$wiro-ai:image`.
 
 **Models**
 
@@ -220,6 +221,7 @@ In Gemini CLI, type `/wiro:image` instead of `/wiro-ai:image`; in Cursor and Kir
 | --- | --- |
 | `.cursor-plugin/plugin.json`, `mcp.json` | Cursor |
 | `.codex-plugin/plugin.json`, `mcp.json`, `assets/logo.png` | Codex |
+| `codex/skills/` | Codex, the commands as skills you call with `$` and copies of the agent skills |
 | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` | Claude Code |
 | `gemini-extension.json` | Gemini CLI |
 | `.devin-plugin/plugin.json` | Devin |

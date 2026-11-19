@@ -1,6 +1,6 @@
 {
   "name": "wiro-ai",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Run image, video, audio and LLM models, build workflows and manage AI agents on Wiro AI from Codex",
   "author": {
     "name": "Wiro AI",
@@ -11,12 +11,12 @@
   "repository": "https://github.com/wiroai/Wiro-Plugin",
   "license": "MIT",
   "keywords": ["wiro", "ai-models", "image-generation", "video-generation", "text-to-speech", "llm", "workflows", "ai-agents", "mcp"],
-  "skills": "./skills/",
+  "skills": "./codex/skills/",
   "mcpServers": "./mcp.json",
   "interface": {
     "displayName": "Wiro AI",
     "shortDescription": "Run 1,000+ AI models",
-    "longDescription": "Wiro AI brings 1,000+ image, video, audio and LLM models into Codex through the hosted Wiro MCP server. Codex can search the catalog, read a model's inputs and price, run it, wait for the task and show you the output. It can also build workflows that chain models into one graph and run them, talk to Studio, Wiro's creative agent, and deploy and message your own agents. Five agent skills cover calling Wiro AI from code, realtime voice, workflows, agents and making media assets for a project. You sign in with your Wiro account in the browser, so there is no key to copy. The plugin is free. Model runs are billed to your Wiro wallet at each model's listed price, and a paid run shows its price and waits for your yes.",
+    "longDescription": "Wiro AI brings 1,000+ image, video, audio and LLM models into Codex through the hosted Wiro MCP server. Codex can search the catalog, read a model's inputs and price, run it, wait for the task and show you the output. It can also build workflows that chain models into one graph and run them, talk to Studio, Wiro's creative agent, and deploy and message your own agents. Five agent skills cover calling Wiro AI from code, realtime voice, workflows, agents and making media assets for a project. Eleven ready commands make images, image edits, video, speech, music, transcripts and 3D models, compare models and prices, and work with workflows, agents and tasks; they run only when you call them, for example $wiro-ai:image. You sign in with your Wiro account in the browser, so there is no key to copy. The plugin is free. Model runs are billed to your Wiro wallet at each model's listed price, and a paid run shows its price and waits for your yes.",
     "developerName": "Wiro AI",
     "category": "Creativity",
     "capabilities": ["Interactive", "Read", "Write"],

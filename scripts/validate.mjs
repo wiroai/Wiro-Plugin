@@ -98,7 +98,7 @@ function frontMatter(file) {
 }
 
 // Skills: the Agent Skills rules every client shares, plus Antigravity's body limit.
-const skillDirs = ['skills', 'devin/skills', 'antigravity/skills', 'kiro/skills'];
+const skillDirs = ['skills', 'devin/skills', 'antigravity/skills', 'kiro/skills', 'codex/skills'];
 for (const base of skillDirs) {
   if (!existsSync(join(root, base))) { fail(base, 'missing'); continue; }
   for (const name of readdirSync(join(root, base))) {
