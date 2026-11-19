@@ -17,6 +17,9 @@
 //   antigravity/skills/<name>/SKILL.md Antigravity skills          /wiro-ai:<name>
 //   kiro/skills/wiro-<name>/SKILL.md   Kiro power skills           /wiro-<name>
 //   kiro/skills/<skill>/SKILL.md       copies of skills/<skill>/SKILL.md for the Kiro power
+//   codex/skills/<name>/SKILL.md       Codex skills                $wiro-ai:<name>
+//   codex/skills/<name>/agents/openai.yaml  keeps them out of Codex's implicit picks: they run only when called
+//   codex/skills/<skill>/SKILL.md      copies of skills/<skill>/SKILL.md for the Codex plugin
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
@@ -152,9 +155,24 @@ const CLIENTS = [
       return noPlaceholder(text);
     },
   },
+  {
+    id: 'codex',
+    owns: rel => /^codex\/skills\/[^/]+\/(SKILL\.md|agents\/openai\.yaml)$/.test(rel) && !COPIED_SKILLS.has(rel.split('/')[2]),
+    file: name => `codex/skills/${name}/SKILL.md`,
+    args: TYPED_TEXT,
+    connect: 'tell the user to run `codex mcp login wiro` in a terminal and sign in. If there is no `wiro` server, the Wiro AI plugin is not installed: `codex plugin marketplace add wiroai/Wiro-Plugin`, then `codex plugin add wiro-ai@wiro`.',
+    cmd: name => `$wiro-ai:${name}`,
+    render(meta, body) {
+      return ['---', `name: ${meta.name}`, `description: ${q(meta.description)}`, '---', '', body].join('\n');
+    },
+    // Codex's counterpart of disable-model-invocation: the skill stays out of the model's list and runs
+    // only when the user calls it with $wiro-ai:<name>.
+    extra: name => ({ [`codex/skills/${name}/agents/openai.yaml`]: 'policy:\n  allow_implicit_invocation: false\n' }),
+    lint: noPlaceholder,
+  },
 ];
 
-// Root skills that the Kiro power ships as copies, since a power only sees its own folder.
+// Root skills that the Kiro power and the Codex plugin ship as copies, since each reads only its own folder.
 const COPIED_SKILLS = new Set(
   readdirSync(join(root, 'skills')).filter(name => existsSync(join(root, 'skills', name, 'SKILL.md'))),
 );
@@ -251,16 +269,19 @@ for (const client of CLIENTS) {
     const issue = client.lint(text);
     if (issue) throw new Error(`${out}: ${issue}`);
     expected.set(out, text);
+    for (const [file, content] of Object.entries(client.extra?.(source.meta.name) ?? {})) expected.set(file, content);
   }
 }
 for (const name of COPIED_SKILLS) {
-  const out = `kiro/skills/${name}/SKILL.md`;
-  expected.set(out, readFileSync(join(root, 'skills', name, 'SKILL.md'), 'utf8'));
+  const text = readFileSync(join(root, 'skills', name, 'SKILL.md'), 'utf8');
+  expected.set(`kiro/skills/${name}/SKILL.md`, text);
+  expected.set(`codex/skills/${name}/SKILL.md`, text);
 }
 owners.push(rel => /^kiro\/skills\/[^/]+\/SKILL\.md$/.test(rel));
+owners.push(rel => /^codex\/skills\/[^/]+\/(SKILL\.md|agents\/openai\.yaml)$/.test(rel));
 
 let problems = 0;
-const generatedDirs = ['commands', 'cursor/commands', 'devin/skills', 'antigravity/skills', 'kiro/skills'];
+const generatedDirs = ['commands', 'cursor/commands', 'devin/skills', 'antigravity/skills', 'kiro/skills', 'codex/skills'];
 for (const file of generatedDirs.flatMap(walk)) {
   if (expected.has(file) || !owners.some(owns => owns(file))) continue;
   if (check) { console.error(`stale: ${file}`); problems++; continue; }
@@ -284,5 +305,5 @@ if (check) {
     console.error(`${problems} generated file(s) differ from src/ and skills/. Run: node scripts/build-commands.mjs`);
     process.exit(1);
   }
-  console.log(`${sources.length} commands for ${CLIENTS.map(c => c.id).join(', ')}, and ${COPIED_SKILLS.size} skills for Kiro, are up to date.`);
+  console.log(`${sources.length} commands for ${CLIENTS.map(c => c.id).join(', ')}, and ${COPIED_SKILLS.size} skills for Kiro and Codex, are up to date.`);
 }
