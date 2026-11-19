@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Validates the manifests against the JSON schemas Cursor, Antigravity and Kiro publish.
-// Needs ajv@8 and ajv-formats@3 next to this script; CI copies it into a folder that has them.
+// Run `npm ci` first: ajv and ajv-formats come from package-lock.json.
 //
-//   node validate-schemas.mjs <repo folder> <folder with the downloaded schemas>
+//   node scripts/validate-schemas.mjs <repo folder> <folder with the downloaded schemas>
 
 import Ajv from 'ajv';
 import Ajv2020 from 'ajv/dist/2020.js';

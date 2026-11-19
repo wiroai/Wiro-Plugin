@@ -4,9 +4,9 @@
 
 # Wiro AI plugin
 
-Run image, video, audio and LLM models, build and run workflows, and deploy and talk to AI agents on Wiro AI from Cursor, Claude Code, Gemini CLI, Devin, Antigravity and Kiro through the hosted Wiro MCP server.
+Run image, video, audio and LLM models, build and run workflows, and deploy and talk to AI agents on Wiro AI from Cursor, Claude Code, Codex, Gemini CLI, Devin, Antigravity and Kiro through the hosted Wiro MCP server.
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-111111?style=for-the-badge&color=111111)](./LICENSE) [![MCP: streamable HTTP](https://img.shields.io/badge/MCP-streamable%20HTTP-111111?style=for-the-badge&color=111111)](https://wiro.ai/docs/wiro-mcp-server) [![Works with Claude Code, Cursor, Gemini CLI, Devin, Antigravity and Kiro](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Cursor%20%C2%B7%20Gemini%20CLI%20%C2%B7%20Devin%20%C2%B7%20Antigravity%20%C2%B7%20Kiro-111111?style=for-the-badge&color=111111)](#install)
+[![License: MIT](https://img.shields.io/badge/license-MIT-111111?style=for-the-badge&color=111111)](./LICENSE) [![MCP: streamable HTTP](https://img.shields.io/badge/MCP-streamable%20HTTP-111111?style=for-the-badge&color=111111)](https://wiro.ai/docs/wiro-mcp-server) [![Works with Claude Code, Codex, Cursor, Gemini CLI, Devin, Antigravity and Kiro](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor%20%C2%B7%20Gemini%20CLI%20%C2%B7%20Devin%20%C2%B7%20Antigravity%20%C2%B7%20Kiro-111111?style=for-the-badge&color=111111)](#install)
 
 [Website](https://wiro.ai) · [Models](https://wiro.ai/models) · [Docs](https://wiro.ai/docs/wiro-mcp-server) · [Dashboard](https://wiro.ai/panel)
 
@@ -40,6 +40,15 @@ If you'd rather use an API key, add the server by hand with an `Authorization` h
 ```
 
 Then open `/mcp`, select the Wiro server and choose Authenticate to sign in.
+
+### Codex
+
+```bash
+codex plugin marketplace add wiroai/Wiro-Plugin
+codex plugin add wiro-ai@wiro
+```
+
+Then run `codex mcp login wiro` to sign in. The plugin adds the Wiro MCP server and the five agent skills.
 
 ### Gemini CLI
 
@@ -101,7 +110,7 @@ The repository also has five agent skills:
 - `wiro-agents` in [`skills/wiro-agents/SKILL.md`](./skills/wiro-agents/SKILL.md) covers agents from template to daily use: plans and prices, deploying, credentials and sign-ins, messages, scheduled tasks, plan changes and removal.
 - `wiro-media-assets` in [`skills/wiro-media-assets/SKILL.md`](./skills/wiro-media-assets/SKILL.md) makes images, social cards, icons, short videos, voice-overs and 3D models for a project, sizes them and puts them where the project's framework expects them.
 
-Claude Code, Gemini CLI, Cursor, Devin and Antigravity pick them up with the plugin, and the Kiro power carries them too. To add them to Codex and other agents that read skills, run:
+Claude Code, Codex, Gemini CLI, Cursor, Devin and Antigravity pick them up with the plugin, and the Kiro power carries them too. To add them to other agents that read skills, run:
 
 ```bash
 npx skills add wiroai/Wiro-Plugin --skill wiro-ai --skill wiro-realtime-voice --skill wiro-workflows --skill wiro-agents --skill wiro-media-assets
@@ -210,12 +219,13 @@ In Gemini CLI, type `/wiro:image` instead of `/wiro-ai:image`; in Cursor and Kir
 | File | Used by |
 | --- | --- |
 | `.cursor-plugin/plugin.json`, `mcp.json` | Cursor |
+| `.codex-plugin/plugin.json`, `mcp.json`, `assets/logo.png` | Codex |
 | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` | Claude Code |
 | `gemini-extension.json` | Gemini CLI |
 | `.devin-plugin/plugin.json` | Devin |
 | `.antigravity-plugin/plugin.json`, `.antigravity-plugin/README.md`, `mcp_config.json` | Antigravity |
 | `kiro/plugin.json`, `kiro/mcp.json` | Kiro |
-| `skills/<name>/SKILL.md` (five skills) | Claude Code, Gemini CLI, Cursor, Devin and Antigravity with the plugin, and other agents through `npx skills add` |
+| `skills/<name>/SKILL.md` (five skills) | Claude Code, Codex, Gemini CLI, Cursor, Devin and Antigravity with the plugin, and other agents through `npx skills add` |
 | `commands/*.md` | Claude Code slash commands |
 | `commands/wiro/*.toml` | Gemini CLI slash commands |
 | `cursor/commands/` | Cursor slash commands |
@@ -224,6 +234,7 @@ In Gemini CLI, type `/wiro:image` instead of `/wiro-ai:image`; in Cursor and Kir
 | `kiro/skills/` | Kiro, the commands and the agent skills inside the power |
 | `src/commands/`, `src/partials/` | The one source every assistant's commands are built from |
 | `scripts/` | `build-commands.mjs` builds the command files; `validate.mjs` and `validate-schemas.mjs` check them |
+| `package.json`, `package-lock.json` | The pinned schema checker `validate-schemas.mjs` uses, installed with `npm ci` |
 | `docs/screenshots/` | The screenshots in this README |
 
 All of them connect to the same hosted server, which runs the MCP tools from the open-source [wiroai/Wiro-MCP](https://github.com/wiroai/Wiro-MCP) package.
