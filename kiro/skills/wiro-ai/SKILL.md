@@ -167,12 +167,14 @@ Check `result` first, then `errors[].code`. Do not rely on the HTTP status alone
 | --- | --- | --- |
 | `0` | Validation, missing parameter or server error | Fix the request; retry a server error with backoff |
 | `1` | Model or task not found or not accessible | Check the slug, task id or token |
+| `93` | A spend limit is used up | Nothing ran and nothing was charged. Do not retry: the message names the limit and when it resets, and someone who manages it can raise it at https://wiro.ai/panel/wallet/limits. The LLM gateway answers HTTP 402 with code `spend_limit_reached` |
 | `96` | Concurrency limit reached | No task was created and nothing was charged; retry after 2, 4, 8 s (up to 60 s, at most 8 tries) or queue |
 | `97` | Insufficient balance | The user adds funds; a run needs at least 0.50 USD (10 USD for training models) |
 | `98` | The model needs a signed-in account | Use authenticated credentials |
 | `99` | Bearer token missing, invalid or expired | Check the credentials |
 
 - How many tasks can run at once depends on the wallet balance: see https://wiro.ai/docs/concurrency-limits. A task counts from `task_queue` until `task_postprocess_end` or `task_cancel`, and tasks started on the website, by agents or by workflows count too.
+- Spend limits cap the whole wallet, a team member, an API key, a way in (the dashboard, the API, MCP, the LLM gateway, the browser extensions, agents) or one agent, per month or per day. A used-up one refuses new work with code `93` even when the wallet has money; `get_account` lists them. See https://wiro.ai/docs/organizations-billing.
 - On HTTP 429, back off and retry. The LLM gateway sends `retry-after`.
 
 ## Links
