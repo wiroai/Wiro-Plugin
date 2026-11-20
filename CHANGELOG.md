@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.1 (2026-11-19)
+
+- Wiro's spend limits: every command and the `wiro-ai` skill know error code `93`. A used-up limit (the whole wallet, a team member, an API key, a way in such as MCP or the LLM gateway, or one agent) refuses new work before anything runs or is charged, so the assistant does not try again; it says which limit it is, when it resets and where it can be raised.
+
 ## 1.5.0 (2026-11-19)
 
 - Codex gets the eleven commands as skills in `codex/skills/`: `$wiro-ai:image`, `$wiro-ai:edit-image`, `$wiro-ai:video`, `$wiro-ai:speech`, `$wiro-ai:music`, `$wiro-ai:transcribe`, `$wiro-ai:3d`, `$wiro-ai:models`, `$wiro-ai:workflow`, `$wiro-ai:agent` and `$wiro-ai:task`. Each one has `agents/openai.yaml` with `allow_implicit_invocation: false`, so it runs only when you call it, like the commands in the other assistants. The same folder carries copies of the five agent skills, and `scripts/build-commands.mjs` writes all of them.
