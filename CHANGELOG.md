@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.2 (2026-11-19)
+
+- Wiro's Model Access: every command and the `wiro-ai` skill know error code `92`. A rule that blocks a model (for the whole wallet, a team member, an API key, a way in such as MCP or the LLM gateway, or one agent) refuses it before anything runs or is charged, so the assistant does not try again or switch to another model on its own. It says which rule blocked the model and that the account owner or a team admin can change it on the Model Access page, or the user can pick another model.
+
 ## 1.5.1 (2026-11-19)
 
 - Wiro's spend limits: every command and the `wiro-ai` skill know error code `93`. A used-up limit (the whole wallet, a team member, an API key, a way in such as MCP or the LLM gateway, or one agent) refuses new work before anything runs or is charged, so the assistant does not try again; it says which limit it is, when it resets and where it can be raised.
