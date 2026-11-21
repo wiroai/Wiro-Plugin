@@ -1,6 +1,6 @@
 {
   "name": "wiro-ai",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Run image, video, audio and LLM models, build workflows and manage AI agents on Wiro AI from Gemini CLI",
   "mcpServers": {
     "wiro": {
