@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.3 (2026-11-20)
+
+- The local route of the `wiro-ai` skill pins `npx -y @wiro-ai/wiro-mcp@1.9.1`, the release that knows the Controls: `get_account` lists the spend limits and says whether the connection can change them, `get_controls` shows every limit and Model Access rule, `check_model_access` checks one model rule by rule, and `manage_spend_limit` and `manage_model_access` change one after a change summary and the user's yes.
+- Error code `93` covers every spend-limit refusal: a limit that is reached, work that costs more than a limit has left (cheaper work may fit, with the user's yes) and room that runs in progress still hold. Limits are raised on the Spend Limits page at https://wiro.ai/panel/controls/spend-limits.
+- The account owner, a team admin or the organization owner can change a limit or a rule. Every command and skill says not to change one to finish a job, only when the user asks for that change.
+- The `wiro-ai` skill links the Spend Limits and Model Access docs, and `wiro-workflows` knows codes `92` and `93`.
+
 ## 1.5.2 (2026-11-19)
 
 - Wiro's Model Access: every command and the `wiro-ai` skill know error code `92`. A rule that blocks a model (for the whole wallet, a team member, an API key, a way in such as MCP or the LLM gateway, or one agent) refuses it before anything runs or is charged, so the assistant does not try again or switch to another model on its own. It says which rule blocked the model and that the account owner or a team admin can change it on the Model Access page, or the user can pick another model.
