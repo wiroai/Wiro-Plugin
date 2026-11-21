@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.4 (2026-11-20)
+
+- The local route of the `wiro-ai` skill runs `npx -y @wiro-ai/wiro-mcp@latest`, so it always starts the newest release instead of a pinned version.
+
 ## 1.5.3 (2026-11-20)
 
 - The local route of the `wiro-ai` skill pins `npx -y @wiro-ai/wiro-mcp@1.9.1`, the release that knows the Controls: `get_account` lists the spend limits and says whether the connection can change them, `get_controls` shows every limit and Model Access rule, `check_model_access` checks one model rule by rule, and `manage_spend_limit` and `manage_model_access` change one after a change summary and the user's yes.

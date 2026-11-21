@@ -17,7 +17,7 @@ Each run creates a task. A task is billed to the project's prepaid wallet only i
 Connecting the MCP server, if the user wants it:
 
 - Hosted: `https://mcp.wiro.ai/v1` (Streamable HTTP). The user signs in with the browser, or the client sends `Authorization: Bearer YOUR_API_KEY` (API Key Only project) or `Bearer YOUR_API_KEY:YOUR_API_SECRET` (Signature project). Claude Code: show the user `claude mcp add --transport http wiro https://mcp.wiro.ai/v1` and run it only after their yes, then `/mcp` to sign in. If the Wiro plugin (wiroai/Wiro-Plugin) is installed, the server is already there: open `/mcp`, pick it and choose Authenticate.
-- Local: `npx -y @wiro-ai/wiro-mcp@1.9.1` (stdio, Node.js 20+) with `WIRO_API_KEY`, plus `WIRO_API_SECRET` for a Signature project, in the server's environment. Its calls use that API key, so spend limits and Model Access rules count them as the API.
+- Local: `npx -y @wiro-ai/wiro-mcp@latest` (stdio, Node.js 20+) with `WIRO_API_KEY`, plus `WIRO_API_SECRET` for a Signature project, in the server's environment. Its calls use that API key, so spend limits and Model Access rules count them as the API.
 - MCP names models `owner/model` in lowercase. `run_model` takes `model` and `params` (the fields from `get_model_schema`).
 
 ## Credentials
