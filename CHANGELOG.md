@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.5 (2026-11-28)
+
+- The `wiro-ai` skill lists Wiro's renamed price methods: `per-run`, `per-output-file`, `per-run-second`, `per-total-token`, `per-output-megapixel` (with `priceExtra` for each further tier and `priceInput` per input image tier), `per-input-audio-second`, the new `per-input-video-second`, `per-input-character`, `per-output-video-second`, `per-realtime-turn` and `reported-price`. On the two input-length methods, `maxSeconds` caps each input.
+
 ## 1.5.4 (2026-11-20)
 
 - The local route of the `wiro-ai` skill runs `npx -y @wiro-ai/wiro-mcp@latest`, so it always starts the newest release instead of a pinned version.
